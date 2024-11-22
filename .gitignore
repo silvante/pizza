@@ -1,0 +1,33 @@
+# Ignore bundler config
+/.bundle
+
+# Ignore database, secrets, and credentials
+/config/database.yml
+/config/master.key
+
+# Ignore environment variables
+.env
+
+# Ignore log files and temp files
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# Ignore uploaded files
+/storage/*
+
+# Ignore cached, built, or bundled files
+/node_modules
+/yarn-error.log
+.byebug_history
+
+# Ignore dependencies
+/vendor/bundle
+
+# Ignore other unneeded files
+/public/assets
+/public/packs
+
+/app/assets/builds/*
+!/app/assets/builds/.keep
