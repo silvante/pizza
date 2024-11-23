@@ -62,4 +62,7 @@ group :test do
   gem "selenium-webdriver"
 end
 
+# custom gems
+
 gem "tailwindcss-rails", "~> 3.0"
+gem "image_processing", "~> 1.2"

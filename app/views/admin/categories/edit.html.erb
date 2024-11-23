@@ -7,4 +7,10 @@
   </div>
 
   <%= render "form", admin_category: @admin_category %>
+  <p class="px-5">havfli hudud #</p>
+  <div class="inline-block ml-2">
+      <%= button_to [:admin, @admin_category], method: :delete do %>
+        <p class="text-md font-medium mt-2 rounded-lg py-3 px-5 bg-white border text-red-500 hover:text-white hover:bg-red-500 hover:border-red-500"><i class='bx bx-trash'></i> turni ochirib yuborish</p>
+      <% end %>
+  </div>
 </div>
