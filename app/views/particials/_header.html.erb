@@ -1,0 +1,32 @@
+<header class="bg-white border-b">
+    <div class="w-full border-b">
+        <div class="container mx-auto px-5 flex bg-white py-2 justify-between items-center">
+            <div class="flex items-center gap-7">
+                <p class="text-lg"><i class='bx bx-location-plus text-base text-lg'></i> Baliqchi</p>
+                <p class="text-lg">address tekshirish</p>
+                <p class="text-lg">zakaz kutish ortacha vaqti: <strong>00:15:05</strong></p>
+            </div>
+            <div class="flex items-center gap-7">
+                <p class="text-lg">ish vaqti: <strong>08:00</strong> dan <strong>00:00</strong> gacha</p>
+                <button class="text-lg py-1 px-3 hover:bg-base hover:text-white"><i class='bx bx-user-circle text-lg'></i> Hisobingiz</button>
+            </div>
+        </div>
+    </div>
+    <div class="container mx-auto px-5 flex bg-white py-4 justify-between items-center">
+        <div class="flex items-center gap-10">
+            <%= link_to root_path, class: "flex items-center gap-2 text-xl" do %>
+                <%= image_tag "logo.png" %> PizzApp
+            <% end %>
+            <nav class="flex gap-7">
+                <p class="text-lg">burger</p>
+                <p class="text-lg">pizza</p>
+                <p class="text-lg">ichimlik</p>
+                <p class="text-lg">desert</p>
+                <p class="text-lg">combo</p>
+            </nav>
+        </div>
+        <div class="flex items-center gap-7">
+            <button class="bg-base text-white py-2 px-4 rounded-md text-lg"><i class='bx bx-cart-alt' ></i> <%= 0 %> sum</button>
+        </div>
+    </div>
+</header>

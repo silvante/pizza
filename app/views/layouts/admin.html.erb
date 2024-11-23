@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "welcome" %> | pizzapp</title>
+    <title><%= content_for(:title) || "manage" %> | pizzapp admin</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -31,9 +31,9 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-[#F9F9F9]">
-    <%= render "particials/header" %>
-    <main class="container mx-auto px-5 flex">
+  <body class="bg-[#F9F9F9] flex">
+    <%= render "particials/aside" %>
+    <main class="p-5">
       <%= yield %>
     </main>
   </body>
