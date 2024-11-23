@@ -65,6 +65,6 @@ class Admin::CategoriesController < AdminController
 
     # Only allow a list of trusted parameters through.
     def admin_category_params
-      params.expect(category: [ :title ])
+      params.expect(category: [ :title, :image ])
     end
 end

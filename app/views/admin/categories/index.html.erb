@@ -12,7 +12,9 @@
     <% end %>
   </div>
 
-  <div id="admin_categories" class="min-w-full">
+  <p class="font-semibold px-4">barcha turlar:</p>
+
+  <div id="admin_categories" class="min-w-full space-y-3">
     <% @admin_categories.each do |admin_category| %>
       <%= render admin_category %>
     <% end %>
