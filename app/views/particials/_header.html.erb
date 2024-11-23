@@ -17,13 +17,13 @@
             <%= link_to root_path, class: "flex items-center gap-2 text-xl" do %>
                 <%= image_tag "logo.png" %> PizzApp
             <% end %>
-            <nav class="flex gap-7">
-                <p class="text-lg">burger</p>
-                <p class="text-lg">pizza</p>
-                <p class="text-lg">ichimlik</p>
-                <p class="text-lg">desert</p>
-                <p class="text-lg">combo</p>
-            </nav>
+            <% if @categories.present? %>
+                <% @categories.each_slice(3) do |slice| %>
+                    <% slice.first(4).each do |category| %>
+                        <p class="text-lg"><%= category.title %></p>
+                    <% end %>
+                <% end %>
+            <% end %>
         </div>
         <div class="flex items-center gap-7">
             <button class="bg-base text-white py-2 px-4 rounded-md text-lg"><i class='bx bx-cart-alt' ></i> <%= 0 %> sum</button>

@@ -1,7 +1,12 @@
-<div id="<%= dom_id category %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Title:</strong>
-    <%= category.title %>
-  </p>
-
+<div id="<%= dom_id category %>" class="bg-white p-4 border rounded-lg flex justify-between items-center">
+  <div>
+    <i class="bg-green-500 px-1 py-3 rounded-full"></i>
+  </div>
+  <div>
+    <p class=" opacity-70 font-medium">tur nomi:</p>
+    <p class="font-semibold"><%= category.title %></p>
+  </div>
+  <%= link_to edit_admin_category_path(category) do %>
+    <p class="flex items-center bg-base py-2 px-4 rounded-lg text-white"><i class='bx bx-edit text-xl mr-2'></i> Taxrirlash</p>
+  <% end %>
 </div>
