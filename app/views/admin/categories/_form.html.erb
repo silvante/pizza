@@ -1,5 +1,6 @@
 <div class="w-full bg-white p-5 rounded-lg border">
   <%= form_with(model: [:admin, admin_category], class: "contents") do |form| %>
+    <h2 class="text-xl font-semibold">Malumotlarni Toldiring</h2>
     <% if admin_category.errors.any? %>
       <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
         <h2><%= pluralize(admin_category.errors.count, "error") %> prohibited this admin_category from being saved:</h2>

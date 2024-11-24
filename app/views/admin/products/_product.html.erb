@@ -1,32 +1,29 @@
-<div id="<%= dom_id product %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Title:</strong>
-    <%= product.title %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Desc:</strong>
-    <%= product.desc %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Is active:</strong>
-    <%= product.is_active %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Price:</strong>
-    <%= product.price %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Is hit:</strong>
-    <%= product.is_hit %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Category:</strong>
-    <%= product.category_id %>
-  </p>
-
+<div id="<%= dom_id product %>" class="bg-white p-4 border rounded-lg flex justify-between items-center">
+  <div class="flex gap-5">
+    <% if product.is_active == true %>
+      <i class="bg-green-500 px-1 py-3 rounded-full"></i>
+    <% else %>
+      <i class="bg-red-500 px-1 py-3 rounded-full"></i>
+    <% end %>
+    <% if product.image.attached? %>
+      <%= image_tag product.thumbnail, class: "w-10"%>
+    <% end %>
+  </div>
+  <div>
+    <p class=" opacity-70 font-medium">nomi:</p>
+    <%= link_to admin_product_path(product) do %>
+      <p class="font-semibold w-52 truncate hover:underline"><%= product.title %></p>
+    <% end %>
+  </div>
+  <div>
+    <p class=" opacity-70 font-medium">tur nomi:</p>
+    <p class="font-semibold"><%= product.category.title %></p>
+  </div>
+  <div>
+    <p class=" opacity-70 font-medium">narxi:</p>
+    <p class="font-semibold"><%= product.price %> sum</p>
+  </div>
+  <%= link_to edit_admin_product_path(product) do %>
+    <p class="flex items-center bg-base py-2 px-4 rounded-lg text-white"><i class='bx bx-edit text-xl mr-2'></i> Taxrirlash</p>
+  <% end %>
 </div>

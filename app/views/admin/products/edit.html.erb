@@ -1,8 +1,19 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Editing product</h1>
+<div class="mx-auto lg:w-2/3 w-full space-y-5">
+  <div class="w-full p-5 border bg-white rounded-lg flex justify-between items-center">
+    <h1 class="font-bold text-2xl">Mahsulotni tahrirlang</h1>
+    <%= link_to admin_products_path, class: "ml-2 rounded-lg py-2 px-5 bg-gray-100 inline-block font-medium hover:text-base" do %>
+      <p class="flex items-center"><i class='bx bx-chevron-left text-xl'></i> Mahsulotlar toplamiga qaytish</p>
+    <% end %>
+  </div>
 
   <%= render "form", admin_product: @admin_product %>
 
-  <%= link_to "Show this product", @admin_product, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <%= link_to "Back to products", admin_products_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <p class="px-5">havfli hudud #</p>
+  <div class="inline-block ml-2">
+      <%= button_to [:admin, @admin_product], method: :delete do %>
+        <p class="text-md font-medium mt-2 rounded-lg py-3 px-5 bg-white border text-red-500 hover:text-white hover:bg-red-500 hover:border-red-500"><i class='bx bx-trash'></i> turni ochirib yuborish</p>
+      <% end %>
+  </div>
+
+  <%= link_to "Mahsulotni korish", [:admin, @admin_product], class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
 </div>
