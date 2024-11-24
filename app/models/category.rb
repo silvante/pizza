@@ -5,4 +5,6 @@ class Category < ApplicationRecord
   def thumbnail
     image.variant(resize_to_limit: [ 100, 100 ])
   end
+
+  has_many :product
 end
