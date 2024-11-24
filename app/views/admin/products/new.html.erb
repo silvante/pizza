@@ -1,7 +1,12 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">New product</h1>
+<div class="w-full space-y-5">
+  <div class="p-4 border rounded-lg bg-white flex justify-between items-center">
+    <h1 class="font-bold text-2xl">Yangi Mahsulot yarating</h1>
+    <%= link_to admin_products_path, class: "ml-2 rounded-lg py-2 px-5 bg-gray-100 inline-block font-medium hover:text-base" do %>
+      <p class="flex items-center"><i class='bx bx-chevron-left text-xl'></i> mahsulotlar toplamiga qaytish</p>
+    <% end %>
+  </div>
 
-  <%= render "form", admin_product: @admin_product %>
-
-  <%= link_to "Back to products", admin_products_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <div class="md:w-2/3 mx-auto">
+    <%= render "form", admin_product: @admin_product %>
+  </div>
 </div>

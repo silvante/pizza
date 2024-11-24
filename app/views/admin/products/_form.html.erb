@@ -1,47 +1,50 @@
-<%= form_with(model: admin_product, class: "contents") do |form| %>
-  <% if admin_product.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(admin_product.errors.count, "error") %> prohibited this admin_product from being saved:</h2>
+<div class="p-5 bg-white border rounded-lg">
+  <%= form_with(model: [:admin, admin_product], class: "contents") do |form| %>
+    <% if admin_product.errors.any? %>
+      <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+        <h2><%= pluralize(admin_product.errors.count, "error") %> prohibited this admin_product from being saved:</h2>
 
-      <ul>
-        <% admin_product.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% admin_product.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="my-5">
+      <%= form.label :title, "Mahsulot nomi *" %>
+      <%= form.text_field :title, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :desc, "Mahsulot haqida malumot *" %>
+      <%= form.textarea :desc, rows: 4, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full resize-none" %>
+    </div>
+
+    <div class="w-full flex gap-5">
+      <div class="flex-1">
+        <%= form.label :price, "Mahsulot narxi * sum da hisoblanadi" %>
+        <%= form.number_field :price, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+      </div>
+      <div class="flex-1">
+        <%= form.label :category_id, "mahsulot turi *" %>
+        <%= form.text_field :category_id, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+      </div>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :is_active %>
+      <%= form.checkbox :is_active, class: "block mt-2 h-5 w-5" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :is_hit %>
+      <%= form.checkbox :is_hit, class: "block mt-2 h-5 w-5" %>
+    </div>
+
+    <div class="inline">
+      <%= form.submit "Mahsulotni saqlash", class: "rounded-lg py-3 px-5 bg-base text-white inline-block font-medium cursor-pointer" %>
     </div>
   <% end %>
-
-  <div class="my-5">
-    <%= form.label :title %>
-    <%= form.text_field :title, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :desc %>
-    <%= form.textarea :desc, rows: 4, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :is_active %>
-    <%= form.checkbox :is_active, class: "block mt-2 h-5 w-5" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :price %>
-    <%= form.number_field :price, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :is_hit %>
-    <%= form.checkbox :is_hit, class: "block mt-2 h-5 w-5" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :category_id %>
-    <%= form.text_field :category_id, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-  </div>
-<% end %>
+</div>
