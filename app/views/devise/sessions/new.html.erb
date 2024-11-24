@@ -1,26 +1,42 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
+<div class="w-full flex flex-col h-screen justify-center items-center">
+  <%= link_to root_path, class: "text-xl flex gap-2 items-center my-5" do %>
+    <%= image_tag "logo.png" %> PizzApp
   <% end %>
+  
+  <h2 class="text-2xl font-semibold">Log in</h2>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+  <div class="flex">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field w-96 px-5 mb-3 space-y-1">
+        <%= f.label :email, "email" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full rounded-lg" %>
+      </div>
+
+      <div class="field w-96 px-5 mb-3 space-y-1">
+        <%= f.label :password, "parol" %><br />
+        <%= f.password_field :password, autocomplete: "current-password", class: "w-full rounded-lg" %>
+      </div>
+
+      <div class="w-96 px-5 flex justify-between">
+        <% if devise_mapping.rememberable? %>
+          <div>
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me, "meni eslab qol" %>
+          </div>
+        <% end %>
+        <%= link_to "Prolni unutdingizmi?", new_password_path(resource_name), class: "text-blue-600" %>
+      </div>
+
+      <div class="actions w-96 px-5 my-5 flex justify-center">
+        <%= f.submit "Tasdiqlash", class: "bg-base text-white cursor-pointer py-2 px-5 rounded-lg border-2 border-base w-full" %>
+      </div>
+    <% end %>
   </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+  <%#= render "devise/shared/links" %>
+  <div class="w-96 px-5 flex flex-col items-center space-y-3">
+    <p>yoki</p>
+    <%= link_to "Roihatdan otish", new_registration_path(resource_name), class: "text-blue-600" %>
+  </div>
+
+</div>

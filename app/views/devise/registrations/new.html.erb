@@ -1,29 +1,60 @@
-<h2>Sign up</h2>
+<div class="w-full flex flex-col h-screen justify-center items-center">
+  <%= link_to root_path, class: "text-xl flex gap-2 items-center my-5" do %>
+    <%= image_tag "logo.png" %> PizzApp
+  <% end %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <h2 class="text-2xl font-semibold">Roihatdan oting</h2>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+  
+    <div class="w-[560px] flex gap-5 px-5 my-3">
+      <div class="field flex-1 space-y-1">
+        <%= f.label :email, "emailingiz" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "rounded-lg" %>
+      </div>
+      <div class="field flex-1 space-y-1">
+        <%= f.label :name, "toliq ismingiz" %><br />
+        <%= f.text_field :name, autofocus: true, autocomplete: "email", class: "rounded-lg" %>
+      </div>
+    </div>
+
+    <div class="w-[560px] flex gap-5 px-5 my-3">
+      <div class="field flex-1 space-y-1">
+        <%= f.label :mobile, "telefon raqamingiz" %><br />
+        <%= f.text_field :mobile, autofocus: true, autocomplete: "email", class: "rounded-lg" %>
+      </div>
+      <div class="field flex-1 space-y-1">
+        <%= f.label :born_in, "tugulgan yilingiz" %><br />
+        <%= f.number_field :born_in, autofocus: true, autocomplete: "email", class: "rounded-lg" %>
+      </div>
+    </div>
+  
+    <div class="w-[560px] flex gap-5 px-5 my-3">
+      <div class="field flex-1 space-y-1">
+        <%= f.label :password, "parol" %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> harf kamida )</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password", class: "rounded-lg" %>
+      </div>
+
+      <div class="field flex-1 space-y-1">
+        <%= f.label :password_confirmation, "parolni qaytaring" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "rounded-lg" %>
+      </div>
+    </div>
+  
+    <div class="actions w-[560px] flex gap-5 px-5 my-3 justify-center ">
+      <%= f.submit "Roihatdan otish", class: "text-white py-2 px-5 my-3 bg-base rounded-lg cursor-pointer" %>
+    </div>
+  <% end %>
+  
+  <%#= render "devise/shared/links" %>
+
+  <div class="w-96 px-5 flex flex-col items-center space-y-3">
+    <p>yoki</p>
+    <p>hisob bormi? <%= link_to "Log in", new_session_path(resource_name), class: "text-blue-600" %></p>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
