@@ -8,6 +8,8 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :born_in, presence: true
 
+  private
+
   def set_default_status
     self.status ||= "active" # Assign default only if the field is nil
   end
