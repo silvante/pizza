@@ -8,9 +8,17 @@
             </div>
             <div class="flex items-center gap-7">
                 <p class="text-lg">ish vaqti: <strong>08:00</strong> dan <strong>00:00</strong> gacha</p>
-                <%= link_to new_user_session_path do %>
-                    <p class="text-lg py-1 px-3 hover:bg-base hover:text-white"><i class='bx bx-user-circle text-lg'></i> Hisobingiz</p>
+                
+                <% unless user_signed_in? %>
+                    <%= link_to new_user_session_path do %>
+                        <p class="text-lg rounded-md py-1 px-3 hover:bg-base hover:text-white"><i class='bx bx-user-circle text-lg'></i> LOG IN</p>
+                    <% end %>
+                <% else %>
+                    <%= link_to user_path(current_user) do %>
+                        <p class="text-lg rounded-md py-1 px-3 hover:bg-base hover:text-white"><i class='bx bx-user-circle text-lg'></i> <%= current_user.name %></p>
+                    <% end %>
                 <% end %>
+                
             </div>
         </div>
     </div>

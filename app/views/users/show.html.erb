@@ -1,0 +1,59 @@
+<div class="lg:w-2/3 mx-auto space-y-5 py-10">
+    <div class="w-full flex justify-between items-center">
+        <h1 class="text-2xl font-semibold">Mening hisobim</h1>
+        <%= link_to root_path do %>
+            <p class="bg-slate-200 py-2 px-5 rounded-lg hover:text-base">Bosh sahifaga qaytish</p>
+        <% end %>
+    </div>
+    <div class="bg-white p-5 rounded-lg border flex justify-between">
+        <div>
+            <h2 class="text-xl font-semibold truncate"><%= current_user.name %></h2>
+            <div class="flex gap-16 mt-5">
+                <div>
+                    <p class=" opacity-70">pochta*</p>
+                    <strong><%= current_user.email %></strong>
+                </div>
+                <div>
+                    <p class=" opacity-70">t-raqam*</p>
+                    <strong>+998 <%= current_user.mobile %></strong>
+                </div>
+                <div>
+                    <p class=" opacity-70">tugulgan yil*</p>
+                    <strong><%= current_user.born_in %></strong>
+                </div>
+            </div>
+        </div>
+        <div>
+            <%= link_to edit_user_registration_path do %>
+                <p class="text-base items-center flex"><i class='bx bx-edit text-xl mr-2'></i> tahrirlash</p>
+            <% end %>
+        </div>
+    </div>
+    <div class="bg-white p-5 rounded-lg border flex justify-between items-center">
+        <div>
+            <h2 class="text-xl font-semibold truncate">Parol - [YASHIRILGAN]</h2>
+        </div>
+        <div>
+            <%= link_to edit_user_registration_path do %>
+                <p class="text-base items-center flex"><i class='bx bx-edit text-xl mr-2'></i> tahrirlash</p>
+            <% end %>
+        </div>
+    </div>
+    <div class="w-full py-24 items-center flex flex-col space-y-5">
+        <%= image_tag "pizza.svg"%>
+        <div class="text-center space-y-2">
+            <p class="text-xl font-semibold">Hizmatdan foidalanish uchun raqamingiz togri bolishi</p>
+            <p>+998 <%= current_user.mobile %></p>
+        </div>
+    </div>
+    <div class="bg-white p-5 rounded-lg border flex justify-between items-center">
+        <div>
+            <h2 class="text-xl font-semibold truncate">Log out</h2>
+        </div>
+        <div>
+            <%= link_to edit_user_registration_path do %>
+                <p class="text-base items-center flex py-2 px-5 text-red-500 bg-gray-100 rounded-lg hover:bg-red-500 hover:text-white">Hisobni tark etish</p>
+            <% end %>
+        </div>
+    </div>
+</div>
