@@ -1,29 +1,35 @@
-<div id="<%= dom_id product %>" class="bg-white p-4 border rounded-lg flex justify-between items-center">
-  <div class="flex gap-5">
-    <% if product.is_active == true %>
-      <i class="bg-green-500 px-1 py-3 rounded-full"></i>
-    <% else %>
-      <i class="bg-red-500 px-1 py-3 rounded-full"></i>
+<div class="bg-white border rounded-lg">
+  <div id="<%= dom_id product %>" class="p-4 flex justify-between items-center">
+    <div class="flex gap-5">
+      <% if product.is_active == true %>
+        <i class="bg-green-500 px-1 py-3 rounded-full"></i>
+      <% else %>
+        <i class="bg-red-500 px-1 py-3 rounded-full"></i>
+      <% end %>
+      <% if product.image.attached? %>
+        <%= image_tag product.thumbnail, class: "w-10"%>
+      <% end %>
+    </div>
+    <div>
+      <p class=" opacity-70 font-medium">nomi:</p>
+      <%= link_to admin_product_path(product) do %>
+        <p class="font-semibold w-52 truncate hover:underline"><%= product.title %></p>
+      <% end %>
+    </div>
+    <div>
+      <p class=" opacity-70 font-medium">tur nomi:</p>
+      <p class="font-semibold"><%= product.category.title %></p>
+    </div>
+    <div>
+      <p class=" opacity-70 font-medium">narxi:</p>
+      <p class="font-semibold"><%= product.price %> sum</p>
+    </div>
+    <%= link_to edit_admin_product_path(product) do %>
+      <p class="flex items-center bg-base py-2 px-4 rounded-lg text-white"><i class='bx bx-edit text-xl mr-2'></i> Taxrirlash</p>
     <% end %>
-    <% if product.image.attached? %>
-      <%= image_tag product.thumbnail, class: "w-10"%>
-    <% end %>
   </div>
-  <div>
-    <p class=" opacity-70 font-medium">nomi:</p>
-    <%= link_to admin_product_path(product) do %>
-      <p class="font-semibold w-52 truncate hover:underline"><%= product.title %></p>
-    <% end %>
+  <div class="border-t p-4 flex items-center justify-between">
+    <p><strong>yaratilgan sana:</strong> <%= product.created_at %></p>
+    <p><strong>tahrirlangan sana:</strong> <%= product.updated_at %></p>
   </div>
-  <div>
-    <p class=" opacity-70 font-medium">tur nomi:</p>
-    <p class="font-semibold"><%= product.category.title %></p>
-  </div>
-  <div>
-    <p class=" opacity-70 font-medium">narxi:</p>
-    <p class="font-semibold"><%= product.price %> sum</p>
-  </div>
-  <%= link_to edit_admin_product_path(product) do %>
-    <p class="flex items-center bg-base py-2 px-4 rounded-lg text-white"><i class='bx bx-edit text-xl mr-2'></i> Taxrirlash</p>
-  <% end %>
 </div>
