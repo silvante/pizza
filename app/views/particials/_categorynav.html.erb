@@ -1,0 +1,14 @@
+<nav class="w-full">
+    <div class="w-full flex justify-between gap-5">
+        <% if categories.present? %>
+            <% categories.each do |ct| %>
+                <%= link_to category_path(ct), class: "flex-1" do %>
+                    <div class="flex flex-col p-7 items-center justify-center bg-white rounded-xl border hover:border-base transition-all">
+                        <%= image_tag ct.thumbnail, class: "rounded-full aspect-square " %>
+                        <%= ct.title %>
+                    </div>
+                <% end %>
+            <% end %>
+        <% end %>
+    </div>
+</nav>

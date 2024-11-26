@@ -30,7 +30,9 @@
             <% if categories.present? %>
                 <% categories.each_slice(3) do |slice| %>
                     <% slice.first(4).each do |category| %>
-                        <p class="text-lg"><%= category.title %></p>
+                        <%= link_to category_path(category) do %>
+                            <p class="text-lg"><%= category.title %></p>
+                        <% end %>
                     <% end %>
                 <% end %>
             <% end %>
