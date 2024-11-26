@@ -13,4 +13,6 @@ class User < ApplicationRecord
   def set_default_status
     self.status ||= "active" # Assign default only if the field is nil
   end
+
+  has_many :order
 end

@@ -28,5 +28,7 @@ Rails.application.routes.draw do
   get "/admin", to: "admin#index"
 
   resources :users
-  resources :cart
+  resources :cart do
+    post "add_to_cart", on: :collection
+  end
 end
