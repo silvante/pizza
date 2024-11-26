@@ -27,8 +27,8 @@
             <%= link_to root_path, class: "flex items-center gap-2 text-xl" do %>
                 <%= image_tag "logo.png" %> PizzApp
             <% end %>
-            <% if @categories.present? %>
-                <% @categories.each_slice(3) do |slice| %>
+            <% if categories.present? %>
+                <% categories.each_slice(3) do |slice| %>
                     <% slice.first(4).each do |category| %>
                         <p class="text-lg"><%= category.title %></p>
                     <% end %>
@@ -36,7 +36,9 @@
             <% end %>
         </div>
         <div class="flex items-center gap-7">
-            <button class="bg-base text-white py-2 px-4 rounded-md text-lg"><i class='bx bx-cart-alt' ></i> <%= 0 %> sum</button>
+            <%= link_to cart_index_path do %>
+                <p class="bg-base text-white py-2 px-4 rounded-md text-lg"><i class='bx bx-cart-alt' ></i> <%= 0 %> sum</p>
+            <% end %>
         </div>
     </div>
 </header>

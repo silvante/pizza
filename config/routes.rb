@@ -28,4 +28,5 @@ Rails.application.routes.draw do
   get "/admin", to: "admin#index"
 
   resources :users
+  resources :cart
 end
