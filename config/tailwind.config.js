@@ -16,7 +16,8 @@ module.exports = {
         base: "#F9F9F9"
       },
       colors: {
-        base: "#FF7010"
+        base: "#FF7010",
+        t_base: "#FF7010"
       }
     },
   },
