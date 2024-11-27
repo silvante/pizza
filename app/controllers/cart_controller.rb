@@ -2,6 +2,14 @@ class CartController < ApplicationController
   before_action :authenticate_user!
   def index
     @order = Order.find_by(user: current_user, status: "pending")
+    if @order.present?
+      @products = Product.all
+    else
+      @products = Product.all
+    end
+    if @order.present?
+      @checking_ids = @order.order_products.pluck(:product_id)
+    end
   end
 
   def add_to_cart
