@@ -3,9 +3,15 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
   before_action :configure_permitted_parameters, if: :devise_controller?
   helper_method :categories
+  helper_method :cart_total_price
 
   def categories
     Category.all
+  end
+
+  def cart_total_price
+    @order = Order.find_by(user: current_user, status: "pending")
+    @order.order_products.sum { |op| op.amount * op.product.price }
   end
 
   protected
