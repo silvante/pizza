@@ -1,1 +1,49 @@
-<h1>hello - <%= @category.title %></h1>
+<div class="lg:w-2/3 mx-auto space-y-5 py-10">
+    <div class="w-full flex items-center justify-between">
+        <h1 class="text-2xl font-semibold"><%= @category.title %> - <%= @category.product.length %></h1>
+        <%= link_to root_path do %>
+            <p class="bg-slate-200 py-2 px-5 rounded-lg hover:text-base">Bosh sahifaga qaytish</p>
+        <% end %>
+    </div>
+    <div class="w-full">
+        <% if @category.product.length < 1 %>
+            <div class="w-full flex flex-col items-center justify-center my-24">
+                <%= image_tag "pizza.png", class: "w-56" %>
+                <h1 class="text-2xl font-bold mb-1">Hozircha bu turdagi taom yoq!</h1>
+                <p class="text-center w-2/3"><strong>eslatma:</strong> zakaz telefon raqam orqali amalga oshiriladi, iltimos telefon raqamingiz togri formatda ekanligiga ishonch hosil qiling</p>
+                <%= link_to root_path do %>
+                    <p class="bg-base text-white py-2 px-5 rounded-lg my-4">bosh sahifaga qaytish</p>
+                <% end %>
+            </div>
+        <% else %>
+            <div class="w-full grid grid-cols-3 gap-8">
+                <% @category.product.each do |pr| %>
+                    <div class="bg-white border rounded-xl overflow-hidden">
+                        <%= link_to product_path(pr) do %>
+                            <div class="w-full">
+                                <%= image_tag pr.thumbnail380, class: "w-full aspect-square" %>
+                            </div>
+                        <% end %>
+                        <div class="p-4 w-full space-y-1">
+                            <p class="font-bold text-xl w-full truncate"><%= pr.title %></p>
+                            <p class="w-full truncate"><%= pr.desc %></p>
+                            <p class="">status: <strong class="<%= pr.is_active ? "bg-green-500 text-white px-2" : "bg-red-500 text-white px-2"%>"><%= pr.is_active ? "aktiv" : "passiv" %></strong></p>
+                        </div>
+                        <div class="p-4 pt-0 w-full flex justify-between items-center">
+                            <%= form_with url: add_to_cart_cart_index_path, method: :post, local: true do |form| %>
+                              <%= hidden_field_tag :product_id, pr.id %>
+                              <%= hidden_field_tag :amount, 1, min: 1 %>
+                              <% if @checking_ids.present? and @checking_ids.include?(pr.id) %>
+                                <%= form.submit "+ 1", class: 'text-base bg-transparent border-2 border-base rounded-md py-2 px-4 cursor-pointer' %>
+                              <% else %>
+                                <%= form.submit "savatchaga", class: 'text-white bg-base rounded-md py-2 px-4 cursor-pointer ' %>
+                              <% end %>
+                            <% end %>
+                            <p class="flex-1 truncate text-right text-xl text-base font-semibold"><%= pr.price %>sum</p>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
+</div>
