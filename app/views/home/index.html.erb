@@ -21,7 +21,7 @@
                         <%= form_with url: add_to_cart_cart_index_path, method: :post, local: true do |form| %>
                           <%= hidden_field_tag :product_id, pr.id %>
                           <%= hidden_field_tag :amount, 1, min: 1 %>
-                          <% if @checking_ids.include?(pr.id) %>
+                          <% if @checking_ids.present? and @checking_ids.include?(pr.id) %>
                             <%= form.submit "+ 1", class: 'text-base bg-transparent border-2 border-base rounded-md py-2 px-4 cursor-pointer' %>
                           <% else %>
                             <%= form.submit "savatchaga", class: 'text-white bg-base rounded-md py-2 px-4 cursor-pointer ' %>
