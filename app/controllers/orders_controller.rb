@@ -9,6 +9,19 @@ class OrdersController < ApplicationController
     end
   end
 
+  def checkout
+    @order = Order.find(params[:id])
+    if @order.update(status: "checked")
+      redirect_to order_path(@order), notice: "zakaz jonatildi, qongiroqni kuting"
+    else
+      redirect_to cart_path, notice: "zakaz jonatilmadi, qayta urinib koring"
+    end
+  end
+
+  def show
+    @order = Order.find(params[:id])
+  end
+
   private
 
   # def set_order

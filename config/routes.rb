@@ -30,7 +30,11 @@ Rails.application.routes.draw do
   resources :users
   resources :products
   resources :categories
-  resources :orders
+  resources :orders do
+    member do
+      patch "checkout"
+    end
+  end
   resources :cart do
     post "add_to_cart", on: :collection
   end

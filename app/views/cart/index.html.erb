@@ -76,5 +76,8 @@
                 </div>
             <% end %>
         </div>
+        <% if @order.present? %>
+            <%= button_to "Commit Order", checkout_order_path(@order), method: :patch, data: { confirm: "Are you sure you want to complete this order?" }, class: "bg-base text-white py-2 px-5 rounded-lg" %>
+        <% end %>
     </div>
 </div>

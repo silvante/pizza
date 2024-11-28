@@ -1,0 +1,10 @@
+<div class="w-full py-32 flex items-center justify-center">
+    <div class="flex flex-col items-center justify-center text-center">
+        <%= image_tag "order.svg", class: "w-52 h-52" %>
+        <h1 class="text-xl font-bold">Buyurtma <span class="text-t_base">#<%= @order.order_code %></span> jonatildi, qongiroqni kuting!</h1>
+        <p class="my-3">Qongiroqni shu yerda kuting, va <strong>#kod</strong> ni aytib bering yoki buyurtmalar tarihiga kiring <br> va songi buyurtmani kodini korishingiz mumkin</p>
+        <%= link_to root_path do %>
+            <p class="py-2 px-4 rounded-lg bg-base text-white">Bosh sahifaga qaytish</p>
+        <% end %>
+    </div>
+</div>
