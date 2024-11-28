@@ -27,7 +27,11 @@ Rails.application.routes.draw do
 
   get "/admin", to: "admin#index"
 
-  resources :users
+  resources :users do
+    member do
+      get :history
+    end
+  end
   resources :products
   resources :categories
   resources :orders do
