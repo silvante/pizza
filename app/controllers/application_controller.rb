@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   helper_method :categories
   helper_method :cart_total_price
+  helper_method :checking_ids
 
   def categories
     Category.all
@@ -13,6 +14,13 @@ class ApplicationController < ActionController::Base
     @order = Order.find_by(user: current_user, status: "pending")
     if @order.present?
       @order.order_products.sum { |op| op.amount * op.product.price }
+    end
+  end
+
+  def checking_ids
+    @order = Order.find_by(user: current_user, status: "pending")
+    if @order.present?
+      @checking_ids = @order.order_products.pluck(:product_id)
     end
   end
 

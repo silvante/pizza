@@ -7,9 +7,6 @@ class CartController < ApplicationController
     else
       @products = Product.all
     end
-    if @order.present?
-      @checking_ids = @order.order_products.pluck(:product_id)
-    end
   end
 
   def add_to_cart
