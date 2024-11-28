@@ -4,7 +4,7 @@
             <% categories.each do |ct| %>
                 <%= link_to category_path(ct), class: "flex-1" do %>
                     <div class="flex flex-col p-7 items-center justify-center bg-white rounded-xl border hover:border-base transition-all">
-                        <%= image_tag ct.thumbnail, class: "rounded-full aspect-square " %>
+                        <%= image_tag ct.thumbnail, class: "rounded-full aspect-square w-7 h-7" %>
                         <%= ct.title %>
                     </div>
                 <% end %>
