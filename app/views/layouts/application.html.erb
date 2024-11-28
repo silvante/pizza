@@ -31,11 +31,11 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-[#F9F9F9]">
+  <body class="bg-[#F9F9F9] flex flex-col min-h-screen">
     <%= render "particials/header" %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <main class="container mx-auto px-5 flex">
+    <main class="container mx-auto px-5 flex-1">
       <%= yield %>
     </main>
     <%= render "particials/footer" %>

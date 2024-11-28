@@ -11,7 +11,9 @@ class ApplicationController < ActionController::Base
 
   def cart_total_price
     @order = Order.find_by(user: current_user, status: "pending")
-    @order.order_products.sum { |op| op.amount * op.product.price }
+    if @order.present?
+      @order.order_products.sum { |op| op.amount * op.product.price }
+    end
   end
 
   protected

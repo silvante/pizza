@@ -29,7 +29,12 @@
                 <% end %>
                 <div class="w-full bg-white border rounded-xl overflow-hidden flex justify-between items-center p-5">
                     <p class="text-xl font-semibold">umumiy narx:</p>
-                    <strong class="text-base text-xl"><%= @order.order_products.sum { |op| op.amount * op.product.price } %> sum</strong>
+                    <div class="flex items-center gap-4">
+                        <strong class="text-base text-xl"><%= @order.order_products.sum { |op| op.amount * op.product.price } %> sum</strong>
+                        <%= link_to @order, data: {"turbo-method": :delete, "turbo-confirm": :"Ishonchingiz komilmi?"} do %>
+                            <p class="text-base items-center flex py-2 px-5 text-red-500 bg-gray-200 rounded-lg hover:bg-red-500 hover:text-white">Savatchani tozalash</p>
+                        <% end %>
+                    </div>
                 </div>
             </div>
         <% else %>
@@ -46,7 +51,7 @@
             <p class="text-2xl font-semibold"><%= @order.present? ? "Qoshimcha taomlar" : "Hozir qoshing" %></p>
         </div>
         <div class="w-full grid grid-cols-4 gap-8">
-            <% @products.each do |pr| %>
+            <% @products.first(4).each do |pr| %>
                 <div class="bg-white border rounded-xl overflow-hidden">
                     <%= link_to product_path(pr) do %>
                         <div class="w-full">

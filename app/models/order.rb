@@ -2,7 +2,7 @@ class Order < ApplicationRecord
   before_create :generate_order_code
   belongs_to :user
 
-  has_many :order_products
+  has_many :order_products, dependent: :destroy
 
   def generate_order_code
     loop do

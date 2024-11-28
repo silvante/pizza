@@ -28,18 +28,16 @@
                 <%= image_tag "logo.png" %> PizzApp
             <% end %>
             <% if categories.present? %>
-                <% categories.each_slice(3) do |slice| %>
-                    <% slice.first(4).each do |category| %>
-                        <%= link_to category_path(category) do %>
-                            <p class="text-lg"><%= category.title %></p>
-                        <% end %>
+                <% categories.first(5).each do |category| %>
+                    <%= link_to category_path(category) do %>
+                        <p class="text-lg"><%= category.title %></p>
                     <% end %>
                 <% end %>
             <% end %>
         </div>
         <div class="flex items-center gap-7">
             <%= link_to cart_index_path do %>
-                <p class="bg-base text-white py-2 px-4 rounded-md text-lg"><i class='bx bx-cart-alt' ></i> <%= cart_total_price %> sum</p>
+                <p class="bg-base text-white py-2 px-4 rounded-md text-lg"><i class='bx bx-cart-alt' ></i> <%= cart_total_price || 0 %> sum</p>
             <% end %>
         </div>
     </div>
