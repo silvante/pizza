@@ -1,1 +1,8 @@
-<h1>delivery - page</h1>
+<div class="lg:w-2/3 mx-auto">
+    <div class="w-full flex justify-normal items-center py-3">
+        <h1 class="text-xl font-bold">Yatkazib berish - <%= @delivery.name %></h1>
+        <%= link_to user_path(@delivery.id) do %>
+            <p>Hisobni korish</p>
+        <% end %>
+    </div>
+</div>
