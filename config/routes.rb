@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   end
   resources :products
   resources :categories
+  resources :delivery, only: %i[show]
   resources :orders do
     member do
       patch "checkout"

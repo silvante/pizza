@@ -38,4 +38,12 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+
+  def authenticate_delivery!
+    authenticate_user!
+    unless current_user.status == "delivery"
+      flash[:alert] = "You are not authorized to access this page."
+      redirect_to root_path
+    end
+  end
 end
