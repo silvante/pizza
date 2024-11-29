@@ -1,0 +1,65 @@
+<div class="w-full bg-white p-5 rounded-lg border">
+  <%= form_with(model: @delivery_worker, url: admin_deliveries_path, method: :post, class: "contents") do |form| %>
+    <h2 class="text-xl font-semibold">Malumotlarni Toldiring</h2>
+    <% if @delivery_worker.errors.any? %>
+      <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+        <h2><%= pluralize(@delivery_worker.errors.count, "error") %> prohibited this delivery from being saved:</h2>
+
+        <ul>
+          <% @delivery_worker.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <!--<div class="my-5" data-controller="previews">-->
+      <%#= form.label :image do %>
+<!--        <p>tur ucun rasm *</p>
+        <div class="w-56 h-56 flex items-center justify-center rounded-xl border overflow-hidden mt-5 bg-gray-200 relative">
+          <i class='bx bx-image-add text-3xl absolute opacity-70' ></i>
+          <%# if delivery.image.attached? %>-->
+            <%#= image_tag delivery.image, data: { previews_target: "preview" }, class: "aspect-square object-cover w-full h-full scale-105 rounded-lg" %>
+          <%# else %>
+            <%#= image_tag "", data: { previews_target: "preview" }, class: "aspect-square object-cover w-full h-full scale-105 rounded-lg" %>
+          <%# end %>
+<!--        </div>-->
+      <%# end %>
+<!--      -->
+      <%#= form.file_field :image, direct_upload: true, class: "hidden", data: { previews_target: "input", action: "change->previews#preview" } %>
+<!--    </div>-->
+
+    <div class="my-5">
+      <%= form.label :name, "Hodim toliq ismi *" %>
+      <%= form.text_field :name, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :mobile, "Hodim telefon raqami *" %>
+      <%= form.text_field :mobile, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :born_in, "hodim tugulgan yili *" %>
+      <%= form.number_field :born_in, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <h2 class="text-xl font-semibold mb-5">login uchun ishlatiladigan malumotlar</h2>
+    <div class="w-full flex justify-between items-center gap-5 my-5">
+      <div class="flex-1">
+        <%= form.label :email, "hodim emaili *" %>
+        <%= form.email_field :email, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+      </div>
+      <div class="flex-1">
+        <%= form.label :password, "Hodim uchun parol *" %>
+        <%= form.password_field :password, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+      </div>
+    </div>
+
+    <h2 class="text-lg mb-5"><strong>eslatma:</strong> malumot saqlanganidan song siz ushbu malumotni tahrirlay olmaysiz va hodim prolni yangilashga ulgurmasdan unutib qoygan tag'dirda, siz yangi hodim yaratishingizga togri keladi - <strong>parolni eslab qoling</strong></h2>
+
+    <div class="inline">
+      <%= form.submit "hodimni saqlash", class: "rounded-lg py-3 px-5 bg-base text-white inline-block font-medium cursor-pointer" %>
+    </div>
+  <% end %>
+</div>
