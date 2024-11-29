@@ -30,4 +30,12 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [ :name, :mobile, :born_in, status: "haridor" ])
     devise_parameter_sanitizer.permit(:account_update, keys: [ :name, :mobile, :born_in ])
   end
+
+  def authenticate_admin!
+    authenticate_user!
+    unless current_user.status == "admin"
+      flash[:alert] = "You are not authorized to access this page."
+      redirect_to root_path
+    end
+  end
 end
