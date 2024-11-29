@@ -6,53 +6,64 @@
         <% end %>
     </div>
     <div class="space-y-5">
-        <% @orders.each do |order| %>
-            <div class="bg-white rounded-lg border flex flex-col w-full">
-                <div class="flex gap-16 w-full justify-between p-5 border-b">
-                    <div class="flex gap-3">
-                        <% if order.status == "checked" %>
-                            <i class="bg-green-500 px-1 py-3 rounded-full"></i>
-                        <% else %>
-                            <i class="bg-base px-1 py-3 rounded-full"></i>
-                        <% end %>
+        <% if @orders.length >= 1 %>
+            <% @orders.each do |order| %>
+                <div class="bg-white rounded-lg border flex flex-col w-full">
+                    <div class="flex gap-16 w-full justify-between p-5 border-b">
+                        <div class="flex gap-3">
+                            <% if order.status == "checked" %>
+                                <i class="bg-green-500 px-1 py-3 rounded-full"></i>
+                            <% else %>
+                                <i class="bg-base px-1 py-3 rounded-full"></i>
+                            <% end %>
+                            <div>
+                                <p class=" opacity-70">Buyurtma</p>
+                                <strong>#<%= order.order_code %></strong>
+                            </div>
+                        </div>
                         <div>
-                            <p class=" opacity-70">Buyurtma</p>
-                            <strong>#<%= order.order_code %></strong>
+                            <p class=" opacity-70">umumiy narxi</p>
+                            <strong><%= order.order_products.sum { |op| op.amount * op.product.price} %> sum</strong>
+                        </div>
+                        <div>
+                            <p class=" opacity-70">status</p>
+                            <strong>
+                                <% if order.status == "checked" %>
+                                    tekshirilmoqda
+                                <% elsif order.status == "complate"%>
+                                    yetkazib berilmoqda
+                                <% else %>
+                                    yerkazib berilgan
+                                <% end %>
+                            </strong>
+                        </div>
+                        <div>
+                            <p class=" opacity-70">Mahsulotlar soni</p>
+                            <strong>
+                                <%= order.order_products.length || 0 %> ta
+                            </strong>
                         </div>
                     </div>
-                    <div>
-                        <p class=" opacity-70">umumiy narxi</p>
-                        <strong><%= order.order_products.sum { |op| op.amount * op.product.price} %> sum</strong>
-                    </div>
-                    <div>
-                        <p class=" opacity-70">status</p>
-                        <strong>
-                            <% if order.status == "checked" %>
-                                tekshirilmoqda
-                            <% elsif order.status == "complate"%>
-                                yetkazib berilmoqda
-                            <% else %>
-                                yerkazib berilgan
+                    <div class="p-5 flex justify-between items-center">
+                        sana: <%= order.updated_at %>
+                        <div class="flex gap-1">
+                            <% order.order_products.first(3).each do |op| %>
+                                <%= link_to product_path(op.product.id) do %>
+                                    <%= image_tag op.product.thumbnail, class: "w-10 h-10 rounded-full" %>
+                                <% end %>
                             <% end %>
-                        </strong>
-                    </div>
-                    <div>
-                        <p class=" opacity-70">Mahsulotlar soni</p>
-                        <strong>
-                            <%= order.order_products.length || 0 %> ta
-                        </strong>
+                        </div>
                     </div>
                 </div>
-                <div class="p-5 flex justify-between items-center">
-                    sana: <%= order.updated_at %>
-                    <div class="flex gap-1">
-                        <% order.order_products.first(3).each do |op| %>
-                            <%= link_to product_path(op.product.id) do %>
-                                <%= image_tag op.product.thumbnail, class: "w-10 h-10 rounded-full" %>
-                            <% end %>
-                        <% end %>
-                    </div>
-                </div>
+            <% end %>
+        <% else %>
+            <div class="w-full flex flex-col items-center justify-center my-24">
+                <%= image_tag "burger.png", class: "w-56" %>
+                <h1 class="text-2xl font-bold mb-1">Hozircha buyurtmalar mavjud emas!</h1>
+                <p class="text-center w-2/3"><strong>eslatma:</strong> zakaz telefon raqam orqali amalga oshiriladi, iltimos telefon raqamingiz togri formatda ekanligiga ishonch hosil qiling</p>
+                <%= link_to root_path do %>
+                    <p class="bg-base text-white py-2 px-5 rounded-lg my-4">hozir taom tanlash</p>
+                <% end %>
             </div>
         <% end %>
     </div>
