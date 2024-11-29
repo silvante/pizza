@@ -54,7 +54,7 @@
                         <p class="bg-base text-white py-2 px-4 rounded-md text-lg"><i class='bx bxs-dashboard' ></i> admin paneli</p>
                     <% end %>
                 <% elsif current_user.status == "delivery" %>
-                    <%= link_to delivery_path do %>
+                    <%= link_to delivery_path(current_user.id) do %>
                         <p class="bg-base text-white py-2 px-4 rounded-md text-lg"><i class='bx bx-package' ></i> hismat honasi</p>
                     <% end %>
                 <% end %>
