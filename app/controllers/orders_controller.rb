@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
 
   def checkout
     @order = Order.find(params[:id])
-    if @order.update(status: "checked")
+    if @order.update(status: "checked", address: params[:address])
       redirect_to order_path(@order), notice: "zakaz jonatildi, qongiroqni kuting"
     else
       redirect_to cart_path, notice: "zakaz jonatilmadi, qayta urinib koring"

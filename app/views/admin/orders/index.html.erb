@@ -43,6 +43,10 @@
                   <p class="font-semibold"><%= checked_order.order_products.sum { |op| op.amount } %> ta</p>
                 </div>
               </div>
+              <div class="flex flex-col border-b p-4">
+                <strong class="text-lg">manzil:</strong>
+                <p class="text-lg w-full truncate"><%= checked_order.address %></p>
+              </div>
               <div class="flex flex-col border-b">
                 <p class="text-lg font-semibold p-4 pb-0">Yetkazib berish kerak:</p>
                 <% checked_order.order_products.each do |op| %>
