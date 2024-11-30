@@ -1,0 +1,87 @@
+<div class="w-full space-y-5">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <% content_for :title, "Products" %>
+
+  <div class="flex justify-between items-center p-4 bg-white rounded-lg border">
+    <h1 class="font-bold text-2xl">Buyurtmalar</h1>
+    <h1 class="text-2xl">sana: <strong><%= Time.now.strftime("%d-%m-%Y") %></strong></h1>
+  </div>
+
+
+  
+  <div class="mx-auto lg:w-2/3">
+    <% if @checked_orders.length > 0 %>
+      <div id="admin_products" class="min-w-full space-y-5">
+        <p class="font-semibold px-4">barcha mahsulotlar:</p>
+        <% @checked_orders.each do |checked_order| %>
+          <div class="bg-white border rounded-xl">
+              <div class="p-4 flex justify-between items-center border-b">
+                <div class="flex gap-5">
+                  <% if checked_order.status == "checked" %>
+                    <i class="bg-green-500 px-1 py-3 rounded-full"></i>
+                  <% else %>
+                    <i class="bg-red-500 px-1 py-3 rounded-full"></i>
+                  <% end %>
+                  <div>
+                    <p class=" opacity-70 font-medium">nomer:</p>
+                    <p class="font-semibold w-52 truncate hover:underline">#<%= checked_order.order_code %></p>
+                  </div>
+                </div>
+                <div>
+                  <p class=" opacity-70 font-medium">telefon raqam:</p>
+                  <p class="font-semibold w-52 truncate hover:underline">+998 <%= checked_order.user.mobile %></p>
+                </div>
+                <div>
+                  <p class=" opacity-70 font-medium">umumiy narxi:</p>
+                  <p class="font-semibold w-52 truncate hover:underline"><%= checked_order.order_products.sum { |op| op.product.price * op.amount} %> sum</p>
+                </div>
+                <div>
+                  <p class=" opacity-70 font-medium">mahulotlar soni:</p>
+                  <p class="font-semibold"><%= checked_order.order_products.sum { |op| op.amount } %> ta</p>
+                </div>
+              </div>
+              <div class="flex flex-col border-b">
+                <p class="text-lg font-semibold p-4 pb-0">Yetkazib berish kerak:</p>
+                <% checked_order.order_products.each do |op| %>
+                    <div class="p-4 flex justify-between items-center">
+                      <div class="flex gap-5 items-center">
+                        <% if op.product.is_active == true %>
+                          <i class="bg-green-500 px-1 py-3 rounded-full"></i>
+                        <% else %>
+                          <i class="bg-red-500 px-1 py-3 rounded-full"></i>
+                        <% end %>
+                        <% if op.product.image.attached? %>
+                          <%= image_tag op.product.thumbnail, class: "w-10"%>
+                        <% end %>
+                        <%= link_to admin_product_path(op.product) do %>
+                          <p class="font-semibold w-52 truncate hover:underline"><%= op.product.title %></p>
+                        <% end %>
+                      </div>
+                      <div>
+                        <p class=" opacity-70 font-medium">mahsulot soni:</p>
+                        <p class="font-semibold"><%= op.amount %> ta</p>
+                      </div>
+                    </div>
+                <% end %>
+              </div>
+              <div class="flex flex-col p-4 gap-4">
+                <p class="text-lg font-semibold">Telefon qilib tekshirildimi?</p>
+                <div class="flex justify-between items-center">
+                    <button class="text-white bg-red-500 py-2 px-4 rounded-lg">buyurtmani bekor qilish</button>
+                    <form>
+                        <input type="number">
+                        <button class="bg-green-500 text-white py-2 px-4 rounded-lg">jonatish <i class='bx bx-paper-plane'></i></button>
+                    </form>
+                </div>
+              </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <%= render partial: "particials/pizzalert", locals: {message: "Tayorlash kerak bolgan buyurtmalar yoq!", btn_text: "Mujozlardan biri Taom buyurtma qilganda buyurtma aynan shu sahifaqa korini beradi!", local_path: new_admin_product_path} %>
+    <% end %>
+  </div>
+</div>
