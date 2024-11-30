@@ -1,5 +1,6 @@
 class Admin::DeliveriesController < AdminController
   def index
+    @deliveries = User.where(status: "delivery")
   end
 
   def new
@@ -18,6 +19,16 @@ class Admin::DeliveriesController < AdminController
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @delivery.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def destroy
+    @delivery = User.find(params[:id])
+    @delivery.destroy
+
+    respond_to do |format|
+      format.html { redirect_to admin_deliveries_path, status: :see_other, notice: "Hodim muaffaqiyatli ishdan boshatildi?" }
+      format.json { head :no_content }
     end
   end
 

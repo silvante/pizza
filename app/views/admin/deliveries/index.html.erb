@@ -5,4 +5,43 @@
         <p  class="rounded-lg py-2 px-5 bg-base text-white font-medium flex items-center"><i class='bx bx-user-plus text-xl mr-2'></i> yangi hodim qoshish</p>
       <% end %>
     </div>
+    <% if @deliveries.length > 0 %>
+      <div class="lg:w-2/3 mx-auto flex flex-col py-5 gap-5">
+        <p class="font-semibold">barcha hodimlar:</p>
+        <% @deliveries.each do |delivery| %>
+          <div class="bg-white border rounded-lg">
+            <div class="flex flex-col justify-center items-center py-14 border-b gap-3">
+                <%= image_tag "order.svg" %>
+                <h2 class="text-lg">Hodim raqami: <strong>+998 <%= delivery.mobile %></strong></h2>
+            </div>
+            <div class="p-4 flex justify-between items-center">
+              <div>
+                <p class=" opacity-70 font-medium">hodim ismi:</p>
+                <%#= link_to admin_delivery_path(delivery) do %>
+                  <p class="font-semibold w-52 truncate hover:underline"><%= delivery.name %></p>
+                <%# end %>
+              </div>
+              <div>
+                <p class=" opacity-70 font-medium">emaili:</p>
+                <p class="font-semibold"><%= delivery.email %></p>
+              </div>
+              <div>
+                <p class=" opacity-70 font-medium">tugulgan yili:</p>
+                <p class="font-semibold"><%= delivery.born_in %></p>
+              </div>
+              <div>
+                <%= link_to admin_delivery_path(delivery.id), data: {"turbo-method": :delete, "turbo-confirm": "ishdan boshatishga ishonchingiz komilmi"} do %>
+                  <p class="py-2 px-4 bg-base text-white rounded-lg">Ishdan boshatish</p>
+                <% end %>
+              </div>
+            </div>
+            <div class="border-t p-4 flex items-center justify-between">
+              <p><strong>ishga yozilgan sana:</strong> <%= delivery.created_at %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <%= render partial: "particials/pizzalert", locals: {message: "Hozircha panelda hodimlar yoq!", alert: "siz hodim roihatdan otkazishingiz mumkin va u email va parol bilan roihatdan otganda u hodimlar kabinetiga kira oladi, hodim qoshilgandan song shu yerda korinish beradi", local_path: new_admin_delivery_path} %>
+    <% end %>
 </div>
