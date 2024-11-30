@@ -12,11 +12,16 @@
     <% end %>
   </div>
 
-  <p class="font-semibold px-4">barcha mahsulotlar:</p>
 
-  <div id="admin_products" class="min-w-full space-y-5">
-    <% @admin_products.each do |admin_product| %>
-      <%= render admin_product %>
-    <% end %>
-  </div>
+  
+  <% if @admin_products.length > 0 %>
+    <div id="admin_products" class="min-w-full space-y-5">
+      <p class="font-semibold px-4">barcha mahsulotlar:</p>
+      <% @admin_products.each do |admin_product| %>
+        <%= render admin_product %>
+      <% end %>
+    </div>
+  <% else %>
+    <%= render partial: "particials/pizzalert", locals: {message: "Hozircha web sahifada mahsulotlar yoq!", btn_text: "yangi mahsulot qoshish", alert: "siz yangi mahsulot qoshishingiz va uni hohlagancha ozgartirishingiz mumkin, mahsulotlar asosiy sahifada barcha jijozlar uchun korsatib beriladi!", local_path: new_admin_product_path} %>
+  <% end %>
 </div>

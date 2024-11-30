@@ -12,22 +12,14 @@
     <% end %>
   </div>
 
-  <p class="font-semibold px-4">barcha turlar:</p>
-
-  <div id="admin_categories" class="min-w-full space-y-3">
-    <% @admin_categories.each do |admin_category| %>
-      <%= render admin_category %>
-    <% end %>
-  </div>
   <% unless @admin_categories.present? %>
-    <div class="w-full flex justify-center items-center my-44 flex-col gap-7">
-      <div>
-        <%= image_tag "pizza.svg" %>
-      </div>
-      <div class="text-center space-y-2">
-        <h4 class="text-2xl font-bold opacity-70">Hozircha hech qanday tur yoq!?</h4>
-        <%= link_to "birinchi turni qoshish", new_admin_category_path, class: "underline text-blue-500" %>
-      </div>
+    <%= render partial: "particials/pizzalert", locals: {message: "Hozircha web sahifada turlar yoq!", btn_text: "yangi tur qoshish", alert: "siz yangi tur qoshishingiz va uni hohlagancha ozgartirishingiz mumkin, turlar asosiy sahifada barcha jijozlar uchun korsatib beriladi!", local_path: new_admin_product_path} %>
+  <% else %>
+    <div id="admin_categories" class="min-w-full space-y-3">
+      <p class="font-semibold px-4">barcha turlar:</p>
+      <% @admin_categories.each do |admin_category| %>
+        <%= render admin_category %>
+      <% end %>
     </div>
   <% end %>
 </div>
