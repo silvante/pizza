@@ -11,7 +11,11 @@ Rails.application.routes.draw do
     resources :categories
     resources :users
     resources :deliveries
-    resources :orders
+    resources :orders do
+      member do
+        patch "commit"
+      end
+    end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

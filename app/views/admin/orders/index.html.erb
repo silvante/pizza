@@ -12,13 +12,13 @@
 
 
   
-  <div class="mx-auto lg:w-2/3">
     <% if @checked_orders.length > 0 %>
-      <div id="admin_products" class="min-w-full space-y-5">
-        <p class="font-semibold px-4">barcha mahsulotlar:</p>
-        <% @checked_orders.each do |checked_order| %>
-          <div class="bg-white border rounded-xl">
-              <div class="p-4 flex justify-between items-center border-b">
+      <div class="mx-auto lg:w-2/3">
+        <div id="admin_products" class="min-w-full space-y-5">
+          <p class="font-semibold px-4">barcha yangi buyurtmalar:</p>
+          <% @checked_orders.each do |checked_order| %>
+            <div class="bg-white border rounded-xl">
+                <div class="p-4 flex justify-between items-center border-b">
                 <div class="flex gap-5">
                   <% if checked_order.status == "checked" %>
                     <i class="bg-green-500 px-1 py-3 rounded-full"></i>
@@ -42,12 +42,12 @@
                   <p class=" opacity-70 font-medium">mahulotlar soni:</p>
                   <p class="font-semibold"><%= checked_order.order_products.sum { |op| op.amount } %> ta</p>
                 </div>
-              </div>
-              <div class="flex flex-col border-b p-4">
+                </div>
+                <div class="flex flex-col border-b p-4">
                 <strong class="text-lg">manzil:</strong>
                 <p class="text-lg w-full truncate"><%= checked_order.address %></p>
-              </div>
-              <div class="flex flex-col border-b">
+                </div>
+                <div class="flex flex-col border-b">
                 <p class="text-lg font-semibold p-4 pb-0">Yetkazib berish kerak:</p>
                 <% checked_order.order_products.each do |op| %>
                     <div class="p-4 flex justify-between items-center">
@@ -70,22 +70,33 @@
                       </div>
                     </div>
                 <% end %>
-              </div>
-              <div class="flex flex-col p-4 gap-4">
-                <p class="text-lg font-semibold">Telefon qilib tekshirildimi?</p>
-                <div class="flex justify-between items-center">
-                    <button class="text-white bg-red-500 py-2 px-4 rounded-lg">buyurtmani bekor qilish</button>
-                    <form>
-                        <input type="number">
-                        <button class="bg-green-500 text-white py-2 px-4 rounded-lg">jonatish <i class='bx bx-paper-plane'></i></button>
-                    </form>
                 </div>
-              </div>
-          </div>
-        <% end %>
-      </div>
+                <div class="flex flex-col p-4 gap-4">
+                  <p class="text-lg font-semibold">Telefon qilib tekshirildimi?</p>
+                  <div class="flex justify-between items-end">
+                      <%= link_to admin_order_path(checked_order), data: {"turbo-method": :delete, "turbo-confirm": "zakazni bekor qilishga ishonchingiz komilmi"} do %>
+                        <p class="text-white bg-red-500 py-2 px-4 rounded-lg">buyurtmani bekor qilish</p>
+                      <% end %>
+                      <%= form_with url: commit_admin_order_path(checked_order), method: :patch, local: true do |form| %>
+                        <div>
+                            <div class="flex gap-5 justify-between items-end">
+                              <div class="flex-1">
+                                <%= form.label :delivery, 'Yetkazib beruvchini tanlang *' %>
+                                <%= form.collection_select :delivery, @delivery_workers, :id, :name, {}, { id: "delivery", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-72"} %>
+                              </div>
+                              <button type="submit" data-confirm="Are you sure you want to complete this order?" class="bg-green-500 text-white py-2 px-5 rounded-lg flex items-center gap-1">
+                                <p>Jonatish</p> <i class='bx bx-send'></i>
+                              </button>
+                            </div>
+                        </div>
+                      <% end %>
+                  </div>
+                </div>
+            </div>
+          <% end %>
+        </div>
+    </div>
     <% else %>
-      <%= render partial: "particials/pizzalert", locals: {message: "Tayorlash kerak bolgan buyurtmalar yoq!", btn_text: "Mujozlardan biri Taom buyurtma qilganda buyurtma aynan shu sahifaqa korini beradi!", local_path: new_admin_product_path} %>
+    <%= render partial: "particials/pizzalert", locals: {message: "Tayorlash kerak bolgan buyurtmalar yoq!", btn_text: "panelga qaytish", alert: "Mujozlardan biri Taom buyurtma qilganda buyurtma aynan shu sahifaqa korini beradi! Buyurtmalarni faqat Mijozlar bera oladi adminlar va yetkazib beruvchilar emas!", local_path: admin_path} %>
     <% end %>
-  </div>
 </div>

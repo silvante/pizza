@@ -13,11 +13,11 @@ class Admin::DeliveriesController < AdminController
 
     respond_to do |format|
       if @delivery_worker.save
-        format.html { redirect_to admin_categories_path, notice: "Category was successfully created." }
+        format.html { redirect_to admin_deliveries_path, notice: "Category was successfully created." }
         format.json { render :show, status: :created, location: :admin_deliveries_path }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @delivery.errors, status: :unprocessable_entity }
+        format.json { render json: @delivery_worker.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -27,7 +27,7 @@ class Admin::DeliveriesController < AdminController
     @delivery.destroy
 
     respond_to do |format|
-      format.html { redirect_to admin_deliveries_path, status: :see_other, notice: "Hodim muaffaqiyatli ishdan boshatildi?" }
+      format.html { redirect_to admin_deliveries_path, status: :see_other, notice: "Hodim muaffaqiyatli ishdan boshatildi" }
       format.json { head :no_content }
     end
   end
