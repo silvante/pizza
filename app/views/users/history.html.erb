@@ -12,9 +12,13 @@
                     <div class="flex gap-16 w-full justify-between p-5 border-b">
                         <div class="flex gap-3">
                             <% if order.status == "checked" %>
-                                <i class="bg-green-500 px-1 py-3 rounded-full"></i>
-                            <% else %>
+                                <i class="bg-gray-500 px-1 py-3 rounded-full"></i>
+                            <% elsif order.status == "complate" %>
                                 <i class="bg-base px-1 py-3 rounded-full"></i>
+                            <% elsif order.status == "delivered" %>
+                                <i class="bg-green-500 px-1 py-3 rounded-full"></i>
+                            <% elsif order.status == "failed" %>
+                                <i class="bg-red-500 px-1 py-3 rounded-full"></i>
                             <% end %>
                             <div>
                                 <p class=" opacity-70">Buyurtma</p>
@@ -29,18 +33,20 @@
                             <p class=" opacity-70">status</p>
                             <strong>
                                 <% if order.status == "checked" %>
-                                    tekshirilmoqda
-                                <% elsif order.status == "complate"%>
-                                    yetkazib berilmoqda
-                                <% else %>
-                                    yerkazib berilgan
+                                    Jonatildi
+                                <% elsif order.status == "complate" %>
+                                    Buyurtma yolda
+                                <% elsif order.status == "delivered" %>
+                                    Yetkazib berilga
+                                <% elsif order.status == "failed" %>
+                                    Yetib kelmagan
                                 <% end %>
                             </strong>
                         </div>
                         <div>
                             <p class=" opacity-70">Mahsulotlar soni</p>
                             <strong>
-                                <%= order.order_products.length || 0 %> ta
+                                <%= order.order_products.sum { |op| op.amount } %> ta
                             </strong>
                         </div>
                     </div>

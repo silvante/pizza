@@ -40,7 +40,12 @@ Rails.application.routes.draw do
   end
   resources :products
   resources :categories
-  resources :delivery, only: %i[show]
+  resources :delivery, only: %i[show] do
+    member do
+      patch "success"
+      patch "failed"
+    end
+  end
   resources :orders do
     member do
       patch "checkout"

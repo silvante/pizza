@@ -5,6 +5,6 @@ class UsersController < ApplicationController
 
   def history
     user = User.find(params[:id])
-    @orders = user.order.where(status: "checked")
+    @orders = user.order.where(user: current_user)
   end
 end
