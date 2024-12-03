@@ -1,0 +1,21 @@
+<div class="bg-white p-5 w-96 border rounded-xl">
+    <h2 class="text-lg font-semibold">Hodimlar</h2>
+    <div>
+        <% if @deliveries.length > 0 %>
+            <% @deliveries.each do |delivery| %>
+                <div class="py-2 border-b">
+                    <p class="truncate"><strong>ismi: </strong><%= delivery.name %></p>
+                    <p class="truncate"><strong>raqami: </strong> +998 <%= delivery.mobile %></p>
+                </div>
+            <% end %>
+            <%= link_to new_admin_delivery_path do %>
+                <p class="mt-5 py-2 bg-base text-white rounded-lg text-center">hodim qoshish</p>
+            <% end %>
+        <% else %>
+            <div class="w-full flex items-center justify-center py-10 flex-col">
+                <%= image_tag "order.svg", class: "w-44" %>
+                <h2 class="my-2 font-semibold text-lg">Hozircha hodimlar yoq</h2>
+            </div>
+        <% end %>
+    </div>
+</div>

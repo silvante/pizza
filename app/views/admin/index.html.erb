@@ -1,1 +1,52 @@
-<h1>admin panel</h1>
+<div class="w-full">
+    <%= render "particials/panelhead" %>
+    <div class="flex gap-5 py-5 items-start">
+        <div class="flex-1">
+            <div class="bg-white p-5 border rounded-xl space-y-3">
+                <h2 class="text-2xl font-semibold">Buyurtmalar:</h2>
+                <div class="grid grid-cols-4 gap-5">
+                    <div class="bg-gradient-to-r from-base to-yellow-400 p-5 text-white rounded-lg">
+                        <h3 class="text-lg font-semibold">Buyurtmalar</h3>
+                        <p class="text-2xl font-semibold"><%= @orders[:total_checked] %> ta</p>
+                    </div>
+                    <div class="bg-gradient-to-r from-green-600 to-green-400 p-5 text-white rounded-lg">
+                        <h3 class="text-lg font-semibold">Jami yetkazilgan</h3>
+                        <p class="text-2xl font-semibold"><%= @orders[:total_delivered] %> ta</p>
+                    </div>
+                    <div class="bg-gradient-to-r from-red-600 to-red-400 p-5 text-white rounded-lg">
+                        <h3 class="text-lg font-semibold">Bekor qilingan</h3>
+                        <p class="text-2xl font-semibold"><%= @orders[:total_failed] %> ta</p>
+                    </div>
+                    <%= link_to admin_orders_path, class: "bg-gradient-to-r from-blue-600 to-blue-400 p-5 text-white rounded-lg" do %>
+                        <div class="">
+                            <h3 class="text-2xl font-semibold"><i class="bx bx-package"></i></h3>
+                            <p>Buyurtmalarga otish <i class='bx bx-chevron-right'></i></p>
+                        </div>
+                    <% end %>
+                </div>
+                <h2 class="text-2xl font-semibold pt-5">Yaratmalar:</h2>
+                <div class="grid grid-cols-4 gap-5">
+                    <div class="p-5 rounded-lg bg-black/5">
+                        <h3 class="text-lg font-semibold">Haridorlar</h3>
+                        <p class="text-2xl font-semibold"><%= @number_of_clients %> ta</p>
+                    </div>
+                    <div class="p-5 rounded-lg bg-black/5">
+                        <h3 class="text-lg font-semibold">Mahsulotlar</h3>
+                        <p class="text-2xl font-semibold"><%= @number_of_products %> ta</p>
+                    </div>
+                    <div class="p-5 rounded-lg bg-black/5">
+                        <h3 class="text-lg font-semibold">Jami turlar</h3>
+                        <p class="text-2xl font-semibold"><%= @number_of_types %> ta</p>
+                    </div>
+                    <%= link_to new_admin_product_path, class: "bg-gradient-to-r from-blue-600 to-blue-400 p-5 text-white rounded-lg" do %>
+                        <div>
+                            <h3 class="text-2xl font-semibold"><i class="bx bx-cookie"></i></h3>
+                            <p>Yangi mahsulot <i class='bx bx-plus'></i></p>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        <%= render "particials/deliverynav" %>
+    </div>
+</div>
