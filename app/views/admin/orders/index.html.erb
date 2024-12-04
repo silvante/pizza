@@ -74,7 +74,7 @@
                 <div class="flex flex-col p-4 gap-4">
                   <p class="text-lg font-semibold">Telefon qilib tekshirildimi?</p>
                   <div class="flex justify-between items-end">
-                      <%= link_to admin_order_path(checked_order), data: {"turbo-method": :delete, "turbo-confirm": "zakazni bekor qilishga ishonchingiz komilmi"} do %>
+                      <%= link_to failed_admin_order_path(checked_order), data: {"turbo-method": :patch, "turbo-confirm": "zakazni bekor qilishga ishonchingiz komilmi"} do %>
                         <p class="text-white bg-red-500 py-2 px-4 rounded-lg">buyurtmani bekor qilish</p>
                       <% end %>
                       <%= form_with url: commit_admin_order_path(checked_order), method: :patch, local: true do |form| %>

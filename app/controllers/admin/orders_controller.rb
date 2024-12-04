@@ -22,4 +22,12 @@ class Admin::OrdersController < AdminController
       redirect_to cart_path, notice: "zakaz jonatilmadi, qayta urinib koring"
     end
   end
+
+  def failed
+    @order = Order.find(params[:id])
+
+    if @order.update(status: "failed")
+      redirect_to admin_orders_path, notice: "Buyurtma bekor qilindi!"
+    end
+  end
 end

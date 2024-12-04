@@ -20,7 +20,7 @@ class AdminController < ApplicationController
     @orders = {
       total: Order.all.length,
       total_delivered: Order.where(status: "delivered").length,
-      total_checked: Order.where(status: "cheched").length,
+      total_checked: Order.where(status: "checked").length,
       total_failed: Order.where(status: "failed").length,
       total_revenue: total_ordered.sum { |order| }
     }
