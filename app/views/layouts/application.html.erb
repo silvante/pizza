@@ -29,6 +29,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gideon+Roman&display=swap" rel="stylesheet">
 
+    <!-- daisy ui -->
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
+
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
@@ -36,6 +40,8 @@
     <%= javascript_importmap_tags %>
     <%= javascript_include_tag "application", defer: true %>
     <%= csrf_meta_tags %>
+
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
 
   </head>
 
@@ -48,4 +54,5 @@
     </main>
     <%= render "particials/footer" %>
   </body>
+  <script src="https://cdn.tailwindcss.com"></script>
 </html>

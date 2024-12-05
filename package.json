@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/silvante/pizza#readme",
   "dependencies": {
+    "alpinejs": "^3.14.6",
     "daisyui": "^4.12.14"
   }
 }
