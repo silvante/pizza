@@ -29,6 +29,8 @@
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "application", defer: true %>
+    <%= csrf_meta_tags %>
   </head>
 
   <body class="bg-[#F9F9F9] flex">

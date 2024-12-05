@@ -13,6 +13,11 @@ class OrdersController < ApplicationController
   def checkout
     @order = Order.find(params[:id])
     if @order.update(status: "checked", address: params[:address])
+      ActionCable.server.broadcast "order_channel", {
+        order_id: @order.id,
+        status: @order.status,
+        order_data: render_to_string(partial: "admin/orders/order", locals: { order: @order })
+      }
       redirect_to order_path(@order), notice: "zakaz jonatildi, qongiroqni kuting"
     else
       redirect_to cart_path, notice: "zakaz jonatilmadi, qayta urinib koring"

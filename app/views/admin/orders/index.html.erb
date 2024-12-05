@@ -14,7 +14,7 @@
   
     <% if @checked_orders.length > 0 %>
       <div class="mx-auto lg:w-2/3">
-        <div id="admin_products" class="min-w-full space-y-5">
+        <div id="admin_products" class="min-w-full space-y-5" id="order-list">
           <p class="font-semibold px-4">barcha yangi buyurtmalar:</p>
           <% @checked_orders.each do |checked_order| %>
             <div class="bg-white border rounded-xl">
