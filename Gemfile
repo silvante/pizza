@@ -67,3 +67,4 @@ end
 gem "tailwindcss-rails", "~> 3.0"
 gem "image_processing", "~> 1.2"
 gem "devise", "~> 4.9", ">= 4.9.4"
+gem "importmap-rails"
