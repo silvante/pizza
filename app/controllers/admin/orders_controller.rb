@@ -17,6 +17,11 @@ class Admin::OrdersController < AdminController
   def commit
     @order = Order.find(params[:id])
     if @order.update(status: "complate", delivery: params[:delivery].to_i)
+      ActionCable.server.broadcast "order_channel", {
+        order_id: @order.id,
+        status: @order.status,
+        order_data: render_to_string(partial: "delivery/order", locals: { order: @order })
+      }
       redirect_to admin_orders_path, notice: "zakaz jonatildi, qongiroqni kuting"
     else
       redirect_to cart_path, notice: "zakaz jonatilmadi, qayta urinib koring"

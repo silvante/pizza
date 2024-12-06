@@ -1,5 +1,5 @@
 class DeliveryController < ApplicationController
-  before_action :authenticate_delivery!
+  before_action :authenticate_user!
   layout "delivery"
   def show
     @delivery = User.find(params[:id])

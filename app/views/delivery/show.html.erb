@@ -21,10 +21,9 @@
     </div>
     <p class="w-full text-center font-semibold text-xl">sana: <%= Time.now.strftime("%d-%m-%Y") %></p>
     <div class="w-full space-y-5">
-        <% if @orders.length > 0 %>
-            <div>
-                <% @orders.each do |order| %>
-                    <div class="bg-white border rounded-xl">
+        <div id="order-container-delivery">
+            <% @orders.each do |order| %>
+                <div class="bg-white border rounded-xl">
                         <div class="p-4 flex justify-between items-center border-b">
                         <div class="flex gap-5">
                           <% if order.status == "complate" %>
@@ -84,11 +83,11 @@
                             <p class="w-full text-white bg-red-500 rounded-lg py-2 text-center">Yetkazib berilmadi</p>
                           <% end %>
                         </div>
-                    </div>
-                <% end %>
-            </div>
-        <% else %>
-            <%= render partial: "particials/pizzalert", locals: {message: "Hozircha Buyurtmalar yoq", alert: "punktga boring yoki sizga buyurtma yoki qongiroq kelishini kuting", local_path: delivery_path(@delivery), btn_text: "sahifada qoling!"} %>
+                </div>
+            <% end %>
+        </div>
+        <% if @orders.length > 0 %>
+          <%= render partial: "particials/pizzalert", locals: {message: "Hozircha Buyurtmalar yoq", alert: "punktga boring yoki sizga buyurtma yoki qongiroq kelishini kuting", local_path: delivery_path(@delivery), btn_text: "sahifada qoling!"} %>
         <% end %>
     </div>
     <p class="w-full text-center font-semibold text-xl">yordam kerakmi?</p>

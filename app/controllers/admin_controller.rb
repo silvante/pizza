@@ -1,5 +1,5 @@
 class AdminController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :authenticate_user!
   layout "admin"
   def index
     @deliveries = User.where(status: "delivery")

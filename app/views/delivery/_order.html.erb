@@ -1,0 +1,61 @@
+<div class="bg-white border rounded-xl">
+    <div class="p-4 flex justify-between items-center border-b">
+    <div class="flex gap-5">
+      <% if order.status == "complate" %>
+        <i class="bg-green-500 px-1 py-3 rounded-full"></i>
+      <% else %>
+        <i class="bg-red-500 px-1 py-3 rounded-full"></i>
+      <% end %>
+      <div>
+        <p class=" opacity-70 font-medium">nomer:</p>
+        <p class="font-semibold w-52 truncate">#<%= order.order_code %></p>
+      </div>
+    </div>
+    <div>
+      <p class=" opacity-70 font-medium">telefon raqam:</p>
+      <p class="font-semibold w-52 truncate">+998 <%= order.user.mobile %></p>
+    </div>
+    <div>
+      <p class=" opacity-70 font-medium">umumiy narxi:</p>
+      <p class="font-semibold w-52 truncate"><%= order.order_products.sum { |op| op.product.price * op.amount} %> sum</p>
+    </div>
+    <div>
+      <p class=" opacity-70 font-medium">mahulotlar soni:</p>
+      <p class="font-semibold"><%= order.order_products.sum { |op| op.amount } %> ta</p>
+    </div>
+    </div>
+    <div class="flex flex-col border-b p-4">
+    <strong class="text-lg">manzil:</strong>
+    <p class="text-lg w-full truncate"><%= order.address %></p>
+    </div>
+    <div class="flex flex-col border-b">
+    <p class="text-lg font-semibold p-4 pb-0">Yetkazib berish kerak:</p>
+    <% order.order_products.each do |op| %>
+        <div class="p-4 flex justify-between items-center">
+          <div class="flex gap-5 items-center">
+            <% if op.product.is_active == true %>
+              <i class="bg-green-500 px-1 py-3 rounded-full"></i>
+            <% else %>
+              <i class="bg-red-500 px-1 py-3 rounded-full"></i>
+            <% end %>
+            <% if op.product.image.attached? %>
+              <%= image_tag op.product.thumbnail, class: "w-10"%>
+            <% end %>
+            <p class="font-semibold w-52 truncate"><%= op.product.title %></p>
+          </div>
+          <div>
+            <p class=" opacity-70 font-medium">mahsulot soni:</p>
+            <p class="font-semibold"><%= op.amount %> ta</p>
+          </div>
+        </div>
+    <% end %>
+    </div>
+    <div class="p-4 flex justify-between gap-4">
+      <%= link_to success_delivery_path(order), data: {"turbo-method": :patch}, class: "flex-1" do %>
+        <p class="w-full text-white bg-green-500 rounded-lg py-2 text-center">Yetkazib berildi</p>
+      <% end %>
+      <%= link_to failed_delivery_path(order), data: {"turbo-method": :patch, "turbo-confirm": "ishonchingiz komilmi"}, class: "flex-1" do %>
+        <p class="w-full text-white bg-red-500 rounded-lg py-2 text-center">Yetkazib berilmadi</p>
+      <% end %>
+    </div>
+</div>
