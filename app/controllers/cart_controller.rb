@@ -1,5 +1,5 @@
 class CartController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_client!
   def index
     @order = Order.find_by(user: current_user, status: "pending")
     if @order.present?
