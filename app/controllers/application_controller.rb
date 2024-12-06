@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :categories
   helper_method :cart_total_price
   helper_method :checking_ids
+  helper_method :delivery_workers
 
   def categories
     Category.all
@@ -22,6 +23,10 @@ class ApplicationController < ActionController::Base
     if @order.present?
       @checking_ids = @order.order_products.pluck(:product_id)
     end
+  end
+
+  def delivery_workers
+    User.where(status: "delivery")
   end
 
   protected

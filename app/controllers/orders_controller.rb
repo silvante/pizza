@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_client!
+  before_action :authenticate_user!
   def destroy
     @order = Order.find(params[:id])
     @order.order_products.destroy_all

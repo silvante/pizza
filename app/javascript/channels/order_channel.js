@@ -13,14 +13,17 @@ consumer.subscriptions.create("OrderChannel", {
 
   received(data) {
     // Called when there's incoming data on the websocket for this channel
-    const OrderContainet = document.getElementById("order-list")
+    const OrderContainer = document.getElementById("order-container");
+    if (!OrderContainer) {
+      console.error("#order-list element is not in the DOM!");
+    }
 
     const newOrderDiv = document.createElement("div")
     newOrderDiv.classList.add("order")
     newOrderDiv.innerHTML = data.order_data
 
     if (data.status === "checked") {
-      OrderContainet.appendChild(newOrderDiv)
+      OrderContainer.appendChild(newOrderDiv)
     }
   }
 });
