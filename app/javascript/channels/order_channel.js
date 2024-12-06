@@ -17,12 +17,15 @@ consumer.subscriptions.create("OrderChannel", {
     const OrderContainerForDelivery = document.getElementById(`order-container-delivery-${data.delivery_id}`);
 
     if (!OrderContainerForDelivery) {
-      console.log("#order-list element is not in the DOM!");
+      console.log("#order-container-deliver element is not in the DOM!");
     }
 
     if (!OrderContainer) {
-      console.log("#order-list element is not in the DOM!");
+      console.log("#order-container element is not in the DOM!");
     }
+
+    let audio = new Audio('/audio/ring.mp3');
+    audio.play();
 
     if (data.status === "checked") {
 
@@ -41,5 +44,5 @@ consumer.subscriptions.create("OrderChannel", {
       
       OrderContainerForDelivery.appendChild(newOrderDivForDelivery)
     }
-  }
+  },
 });
