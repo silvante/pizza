@@ -18,6 +18,7 @@ class Admin::OrdersController < AdminController
     @order = Order.find(params[:id])
     if @order.update(status: "complate", delivery: params[:delivery].to_i)
       ActionCable.server.broadcast "order_channel", {
+        delivery_id: params[:delivery],
         order_id: @order.id,
         status: @order.status,
         order_data: render_to_string(partial: "delivery/order", locals: { order: @order })

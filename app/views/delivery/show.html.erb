@@ -21,7 +21,7 @@
     </div>
     <p class="w-full text-center font-semibold text-xl">sana: <%= Time.now.strftime("%d-%m-%Y") %></p>
     <div class="w-full space-y-5">
-        <div id="order-container-delivery">
+        <div id="<%= "order-container-delivery-#{@delivery.id}" %>">
             <% @orders.each do |order| %>
                 <div class="bg-white border rounded-xl">
                         <div class="p-4 flex justify-between items-center border-b">

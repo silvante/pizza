@@ -14,13 +14,18 @@ consumer.subscriptions.create("OrderChannel", {
   received(data) {
     // Called when there's incoming data on the websocket for this channel
     const OrderContainer = document.getElementById("order-container");
-    const OrderContainerForDelivery = document.getElementById("order-container-delivery");
+    const OrderContainerForDelivery = document.getElementById(`order-container-delivery-${data.delivery_id}`);
+
+    if (!OrderContainerForDelivery) {
+      console.log("#order-list element is not in the DOM!");
+    }
 
     if (!OrderContainer) {
-      console.error("#order-list element is not in the DOM!");
+      console.log("#order-list element is not in the DOM!");
     }
 
     if (data.status === "checked") {
+
       const newOrderDiv = document.createElement("div")
       newOrderDiv.classList.add("order")
       newOrderDiv.innerHTML = data.order_data
@@ -29,6 +34,7 @@ consumer.subscriptions.create("OrderChannel", {
     }
 
     if (data.status === "complate") {
+
       const newOrderDivForDelivery = document.createElement("div")
       newOrderDivForDelivery.classList.add("order")
       newOrderDivForDelivery.innerHTML = data.order_data
