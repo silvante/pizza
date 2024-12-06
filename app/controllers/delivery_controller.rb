@@ -4,7 +4,9 @@ class DeliveryController < ApplicationController
   def show
     @delivery = User.find(params[:id])
     @total_delivered_orders = Order.where(delivery: @delivery.id, status: "delivered")
-    @ordered_today = Order.where(updated_at: Time.zone.today.all_day, status: "delivered")
+    @ordered_today = Order.where(updated_at: Time.zone.today.all_day, status: "delivered", delivery: @delivery.id)
+    @failed_today = Order.where(updated_at: Time.zone.today.all_day, status: "failed", delivery: @delivery.id)
+    @total_failed = Order.where(status: "failed", delivery: @delivery.id)
     @orders = Order.where(delivery: @delivery.id, status: "complate")
     admin = User.find_by(status: "admin")
     @admin_mobile = admin.mobile

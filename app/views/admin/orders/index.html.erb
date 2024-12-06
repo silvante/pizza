@@ -9,10 +9,11 @@
     <h1 class="font-bold text-2xl">Buyurtmalar</h1>
     <h1 class="text-2xl">sana: <strong><%= Time.now.strftime("%d-%m-%Y") %></strong></h1>
   </div>
-    <%# if @checked_orders.length > 0 %>
       <div class="mx-auto lg:w-2/3">
         <div class="min-w-full space-y-5" id="order-container"> <!--# this is order-list-->
-          <p class="font-semibold px-4">barcha yangi buyurtmalar:</p>
+          <% if @checked_orders.length > 0 %>
+            <p class="font-semibold px-4">barcha yangi buyurtmalar:</p>
+          <% end %>
           <% @checked_orders.each do |checked_order| %>
             <div class="bg-white border rounded-xl">
                 <div class="p-4 flex justify-between items-center border-b">
@@ -93,7 +94,7 @@
           <% end %>
         </div>
     </div>
-    <%# else %>
-    <%#= render partial: "particials/pizzalert", locals: {message: "Tayorlash kerak bolgan buyurtmalar yoq!", btn_text: "panelga qaytish", alert: "Mujozlardan biri Taom buyurtma qilganda buyurtma aynan shu sahifaqa korini beradi! Buyurtmalarni faqat Mijozlar bera oladi adminlar va yetkazib beruvchilar emas!", local_path: admin_path} %>
-    <%# end %>
+    <% if @checked_orders.length <= 0 %>
+      <%= render partial: "particials/pizzalert", locals: {message: "Tayorlash kerak bolgan buyurtmalar yoq!", btn_text: "panelga qaytish", alert: "Mujozlardan biri Taom buyurtma qilganda buyurtma aynan shu sahifaqa korini beradi! Buyurtmalarni faqat Mijozlar bera oladi adminlar va yetkazib beruvchilar emas!", local_path: admin_path} %>
+    <% end %>
 </div>

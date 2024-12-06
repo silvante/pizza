@@ -1,4 +1,4 @@
-<div class="lg:w-2/3 mx-auto space-y-5">
+<div class="lg:w-2/3 mx-auto space-y-5 flex flex-col min-h-screen">
     <div class="w-full flex justify-between items-center py-3">
         <h1 class="text-xl font-bold">Yatkazib berish - <%= @delivery.name %></h1>
         <%= link_to user_path(@delivery.id) do %>
@@ -20,7 +20,7 @@
         </div>
     </div>
     <p class="w-full text-center font-semibold text-xl">sana: <%= Time.now.strftime("%d-%m-%Y") %></p>
-    <div class="w-full space-y-5">
+    <div class="w-full space-y-5 flex-1">
         <div id="<%= "order-container-delivery-#{@delivery.id}" %>">
             <% @orders.each do |order| %>
                 <div class="bg-white border rounded-xl">
@@ -86,12 +86,22 @@
                 </div>
             <% end %>
         </div>
-        <% if @orders.length > 0 %>
+        <% if @orders.length <= 0 %>
           <%= render partial: "particials/pizzalert", locals: {message: "Hozircha Buyurtmalar yoq", alert: "punktga boring yoki sizga buyurtma yoki qongiroq kelishini kuting", local_path: delivery_path(@delivery), btn_text: "sahifada qoling!"} %>
         <% end %>
     </div>
+    <div class="w-full grid grid-cols-2 gap-5">
+        <div class="p-5 rounded-lg bg-gradient-to-r from-red-600 to-red-500 text-white flex justify-center items-center gap-5">
+            <h2 class="font-semibold text-xl text-center">Bugun Yetkazib berilmadi</h2>
+            <strong class="text-3xl"><%= @failed_today.length %> ta</strong>
+        </div>
+        <div class="p-5 rounded-lg bg-gradient-to-r from-red-600 to-red-500 text-white flex justify-center items-center gap-5">
+            <h2 class="font-semibold text-xl text-center">Jami yetkazib berilmagan</h2>
+            <strong class="text-3xl"><%= @total_failed.length %> ta</strong>
+        </div>
+    </div>
     <p class="w-full text-center font-semibold text-xl">yordam kerakmi?</p>
-    <div class="flex justify-between items-center">
+    <div class="flex justify-between items-center pb-5">
         <h2><strong>Admin raqami:</strong> +998 <%= @admin_mobile %></h2>
         <h2><strong>Yaratuvchi raqami:</strong> +998 333038282</h2>
     </div>
