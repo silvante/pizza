@@ -7,3 +7,6 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+# db/seeds.rb
+
+User.create(name: "Manager", email: "admin@we.com", password: "admin1234", status: "admin", mobile: "333038282", born_in: 2000)
