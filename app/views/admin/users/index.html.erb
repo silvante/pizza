@@ -4,3 +4,9 @@
       <p  class="rounded-lg py-2 px-5 bg-base text-white font-medium flex items-center"><i class='bx bx-layer-plus text-xl mr-2'></i> yangi tur yaratish</p>
     <% end %>
 </div>
+<p class="p-5 lg:w-2/3 mx-auto">Barcha mijozlar:</p>
+<div class="lg:w-2/3 mx-auto">
+  <% @users.each do |user| %>
+    <%= render user %>
+  <% end %>
+</div>
