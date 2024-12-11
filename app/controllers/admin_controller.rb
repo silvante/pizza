@@ -30,20 +30,20 @@ class AdminController < ApplicationController
 
   # Calculate total revenue
   def total_revenue
-    OrderProduct.joins(:product).sum("order_products.amount * products.price")
+    OrderProduct.joins(:product, :order).where(order: { status: "delivered" }).sum("order_products.amount * products.price")
   end
 
   # Calculate revenue for the current month
   def revenue_for_month
-    OrderProduct.joins(:product)
-                .where(created_at: Time.current.beginning_of_month..Time.current.end_of_month)
+    OrderProduct.joins(:product, :order)
+                .where(created_at: Time.current.beginning_of_month..Time.current.end_of_month, order: { status: "delivered" })
                 .sum("order_products.amount * products.price")
   end
 
   # Calculate revenue for the current day
   def revenue_for_day
-    OrderProduct.joins(:product)
-                .where(created_at: Time.current.beginning_of_day..Time.current.end_of_day)
+    OrderProduct.joins(:product, :order)
+                .where(created_at: Time.current.beginning_of_day..Time.current.end_of_day, order: { status: "delivered" })
                 .sum("order_products.amount * products.price")
   end
 end
