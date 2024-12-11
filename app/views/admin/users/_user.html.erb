@@ -1,3 +1,19 @@
-<div class="p-5 bg-white rounded-lg border">
-    <h1><%= user.name %></h1>
+<div class="bg-white rounded-lg border">
+    <div class="p-4 flex justify-between items-center">
+        <div>
+            <strong>ism:</strong>
+            <h1><%= user.name %></h1>
+        </div>
+        <div>
+            <strong>nomer:</strong>
+            <h1>+998 <%= user.mobile %></h1>
+        </div>
+        <div>
+            <strong>jami buyurtmalari:</strong>
+            <h1 class="font-semibold <%= user.order.length < 0 ? "text-green-600" : "text-red-600" %>"><%= user.order.length %> ta</h1>
+        </div> 
+    </div>
+    <div class="p-4 border-t">
+        <strong>qoshilgan sana:</strong> <%= user.created_at %>
+    </div>
 </div>
