@@ -5,7 +5,64 @@
             <p class="bg-gray-100 text-black hover:text-t_base py-2 px-4 rounded-lg">Orqaga qaytish</p>
         <% end %>
     </div>
-    <div class="bg-white p-4 border rounded-xl flex justify-between items-center">
-        
+    <div class="bg-white rounded-xl border">
+        <div class="p-4 flex justify-between items-center border-b">
+            <div class="">
+                <strong>ism*</strong>
+                <p class=" truncate"><%= @user.name %></p>
+            </div>
+            <div class="">
+                <strong>raqami*</strong>
+                <p class=" truncate">+998 <%= @user.mobile %></p>
+            </div>
+            <div class="">
+                <strong>tugulgan yili*</strong>
+                <p class=" truncate"><%= @user.born_in %></p>
+            </div>
+            <div class="">
+                <strong>eamil*</strong>
+                <p class=" truncate"><%= @user.email %></p>
+            </div>
+        </div>
+        <div class="p-4 flex justify-between items-center">
+            <p><strong>roihatdan otgan sana:</strong> <%= @user.created_at %></p>
+        </div>
+    </div>
+    <p class="text-xl font-semibold px-4">Statistikalari</p>
+    <div class="bg-white border rounded-xl">
+        <div class="flex justify-between items-center p-4 border-b">
+            <h3 class="text-lg font-semibold">jami buyurtmalar:</h3>
+            <strong class="text-green-600 text-lg"><%= @order_length %> ta</strong>
+        </div>
+        <div class="flex justify-between items-center p-4 border-b">
+            <h3 class="text-lg font-semibold">jami sotib oldi:</h3>
+            <strong class="text-green-600 text-lg"><%= @product_length %> mahsulot</strong>
+        </div>
+        <div class="flex justify-between items-center p-4">
+            <h3 class="text-lg font-semibold">jami sarifladi:</h3>
+            <strong class="text-green-600 text-lg"><%= @total_spent %> sum</strong>
+        </div>
+    </div>
+    <p class="text-xl font-semibold px-4">Buyurtmalari</p>
+    <% @orders.each do |order| %>
+        <div class="bg-white border rounded-lg p-4 flex justify-between items-center">
+            <div class="flex gap-4">
+                <i class="py-3 px-1 bg-green-500 rounded-full"></i>
+                <h3 class="text-lg font-semibold">#<%= order.order_code %></h3>
+            </div>
+            <p class="text-lg font-semibold">Yetkazib berilgan</p>
+            <div class="flex gap-1 text-lg">
+                <strong>Narx:</strong> <%= order.order_products.sum { |op| op.amount * op.product.price } %> sum
+            </div>
+        </div>
+    <% end %>
+    <% if @orders.length == 0 %>
+        <%= render partial: "particials/pizzalert", locals: {message: "mijoz buyurtma bermagan!", btn_text: "boshqalarni korish", alert: "qachon mijoz zakazi yetkazib berilsa u bu yerda korinish beradi!", local_path: admin_users_path} %>
+    <% end %>
+    <p class="text-xl font-semibold px-4 text-red-500">Xavfli zona</p>
+    <div>
+        <%= link_to admin_user_path(@user.id), data: {"turbo-method": :delete, "turbo-confirm": "roihatdan chiqarishga ishonchingiz komilmi?"} do %>
+          <p class="py-2 px-4 bg-gray-200 text-center text-black rounded-lg hover:text-white hover:bg-red-500">Roihatdan ochirib tashlash</p>
+        <% end %>
     </div>
 </div>
