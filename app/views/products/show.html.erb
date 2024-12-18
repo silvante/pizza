@@ -19,6 +19,26 @@
                 <p class="opacity-50">taom sotib olganlar soni:</p>
                 <p class="font-medium px-2 inline-block"><%= @product.order_products.length %> ta</p>
             </div>
+            <div data-controller="count">
+                <%= form_with url: add_to_cart_cart_index_path, method: :post, local: true, id: "product-form", data: { controller: "count" } do |f| %>
+                    <div id="quantity-control">
+                      <button type="button" data-action="click->count#decrement" class="py-1 px-4 bg-base rounded-lg text-white font-semibold text-xl active:opacity-70">-</button>
+                      <span data-count-target="output" class="py-2 px-4">1</span>
+                      <button type="button" data-action="click->count#increment" class="py-1 px-4 bg-base rounded-lg text-white font-semibold text-xl active:opacity-70">+</button>
+                    </div>
+
+                    <!-- Hidden input to send the count value -->
+                    <%= f.hidden_field :amount, value: 1, data: { count_target: "input" } %>
+                    <%= f.hidden_field :product_id, value: @product.id %>
+
+                    <div class="flex gap-7 items-center my-5 w-full justify-between">
+                        <h3 class="text-xl font-semibold"><span class="opacity-50">Narx: </span><%= @product.price %> sum </h3>
+                        <%= button_tag(type: "submit") do %>
+                            <p class="bg-base text-white py-2 px-7 font-semibold rounded-lg">Savatchaga <i class='bx bxs-shopping-bag-alt'></i></p>
+                        <% end %>
+                    </div>
+                <% end %>
+            </div>
         </div>
     </div>
 </div>
