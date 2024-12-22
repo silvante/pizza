@@ -32,9 +32,14 @@
                     </div>
                 </div>
             <% end %>
-        <% else %>
-            <p>end</p>
         <% end %>
     </div>
+    
+    <div class="w-full">
+        <% if @products.length <= 0 %>
+            <%= render partial: "particials/pizzalert", locals: {message: "Hozircha web sahifada mahsulotlar yoq!", btn_text: "roihatdan otish", alert: "hozircha web sahifamizda hech qanday maysulotlar yoq! roihatdan oting.", local_path: new_user_registration_path} %>
+        <% end %>
+    </div>
+    
     <%= render "particials/rules" %>
 </div>
