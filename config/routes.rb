@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :categories
     resources :users
     resources :deliveries
+    resources :settings, only: [ :index, :update ]
     resources :orders do
       member do
         patch "commit"
