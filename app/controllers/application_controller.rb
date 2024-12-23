@@ -6,6 +6,11 @@ class ApplicationController < ActionController::Base
   helper_method :cart_total_price
   helper_method :checking_ids
   helper_method :delivery_workers
+  helper_method :settings
+
+  def settings
+    Setting.first
+  end
 
   def categories
     Category.all

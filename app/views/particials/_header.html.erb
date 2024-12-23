@@ -2,12 +2,11 @@
     <div class="w-full border-b">
         <div class="container mx-auto px-5 flex bg-white py-2 justify-between items-center">
             <div class="flex items-center gap-7">
-                <p class="text-lg"><i class='bx bx-location-plus text-base text-lg'></i> Baliqchi</p>
-                <p class="text-lg">address tekshirish</p>
-                <p class="text-lg">zakaz kutish ortacha vaqti: <strong>00:15:05</strong></p>
+                <p class="text-lg"><i class='bx bx-location-plus text-base text-lg'></i> <%= settings.site_address %></p>
+                <p class="text-lg">zakaz kutish ortacha vaqti: <strong><%= settings.order_time %></strong></p>
             </div>
             <div class="flex items-center gap-7">
-                <p class="text-lg">ish vaqti: <strong>08:00</strong> dan <strong>00:00</strong> gacha</p>
+                <p class="text-lg">ish vaqti: <strong><%= settings.work_start_time.strftime("%H:%M") %></strong> dan <strong><%= settings.work_end_time.strftime("%H:%M") %></strong> gacha</p>
                 <% if current_user.present? %>
                     <% if current_user.status == "client" %>
                         <%= link_to history_user_path(current_user) do %>
@@ -33,7 +32,7 @@
     <div class="container mx-auto px-5 flex bg-white py-4 justify-between items-center">
         <div class="flex items-center gap-10">
             <%= link_to root_path, class: "flex items-center gap-2 text-xl" do %>
-                <%= image_tag "logo.png" %> PizzApp
+                <%= image_tag settings.icon, class: "w-14 h-14" %> <%= settings.site_name %>
             <% end %>
             <% if categories.present? %>
                 <% categories.first(5).each do |category| %>

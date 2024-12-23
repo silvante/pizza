@@ -1,8 +1,8 @@
 <footer class="w-full text-black p-10 border-t bg-white">
     <div class="container mx-auto px-5 grid grid-cols-4">
         <div class="space-y-4">
-            <%= link_to root_path, class: "flex items-center gap-2 text-xl" do %>
-                <%= image_tag "logo.png" %> PizzApp
+            <%= link_to admin_path, class: "flex items-center gap-2 text-xl" do %>
+                <%= image_tag settings.icon, class: "w-14 h-14" %> <%= settings.site_name %> admin
             <% end %>
             <p><i class='bx bxl-github text-lg text-t_base'></i> yaratuvchi github - <a href="https://github.com/silvante" target="_blank">silvante</a></p>
             <p><i class='bx bx-user-circle text-lg text-t_base' ></i> yaratuvchi portfolio - <a href="https://silvante.netlify.app" target="_blank">silvante</a></p>
@@ -30,8 +30,8 @@
             <ul class="space-y-4">
                 <ul class="text-lg font-semibold">Yordam va kantaktlar</ul>
                 <li class="font-semibold"><i class='bx bx-user-voice text-2xl text-t_base'></i> +998 33 303 8282</li>
-                <li class=""><i class='bx bx-location-plus text-2xl text-t_base'></i>Andijon, baliqchi, markaz</li>
-                <li class="space-x-5"><a href="#"><i class='bx bxl-instagram text-t_base text-lg' ></i> instgram</a> <a href="#"><i class='bx bxl-facebook-circle text-t_base text-lg'></i> facebook</a></li>
+                <li class=""><i class='bx bx-location-plus text-2xl text-t_base'></i><%= settings.site_address %></li>
+                <li class="space-x-5"><a href="<%= settings.instagram_link %>"><i class='bx bxl-instagram text-t_base text-lg' ></i> instgram</a>
             </ul>
         </div>
     </div>
