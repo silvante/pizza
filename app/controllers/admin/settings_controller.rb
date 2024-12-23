@@ -23,6 +23,6 @@ class Admin::SettingsController < AdminController
   end
 
   def setting_params
-    params.expect(setting: [ :site_name, :site_description, :site_welcome, :banner, :icon, :work_end_time, :work_start_time, :order_price, :order_time, :site_address, :instagram_link ])
+    params.expect(setting: [ :site_name, :dispatcher_mobile, :site_description, :site_welcome, :banner, :icon, :work_end_time, :work_start_time, :order_price, :order_time, :site_address, :instagram_link ])
   end
 end
