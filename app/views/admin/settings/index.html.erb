@@ -1,18 +1,90 @@
-<div class="w-full space-y-5">
-    <div class="w-full p-4 bg-white border rounded-xl">
-        <h1 class="text-2xl font-bold">Settings</h1>
-    </div>
-    <%= form_with url: admin_setting_path(@setting), method: :patch do %>
-        <div class="w-full flex gap-5 justify-between items-start">
-            <div class="bg-white flex-1 border rounded-xl p-5">
-                <h2 class="text-lg font-semibold">Sayt nomi va icon</h2>
-            </div>
-            <div class="bg-white flex-1 border rounded-xl p-5">
-                <h2 class="text-lg font-semibold">Ish vaqtlari va banner</h2>
-            </div>
-            <div class="bg-white flex-1 border rounded-xl p-5">
-                <h2 class="text-lg font-semibold">Linklar va yordam</h2>
-            </div>
-        </div>
-    <% end %>
-</div>
+<%= form_with model: @setting, url: admin_setting_path(@setting), method: :patch do |form| %>
+  <div class="w-full space-y-5">
+      <div class="w-full p-4 bg-white border rounded-xl flex justify-between items-center">
+          <h1 class="text-2xl font-bold">Settings</h1>
+          <div>
+            <%= form.submit "ozgarishlarni saqlash", class: "text-white bg-base rounded-lg py-2 px-5" %>
+          </div>
+      </div>
+      <div class="w-full flex gap-5 justify-between items-start">
+          <div class="bg-white flex-1 border rounded-xl p-5 space-y-5">
+              <h2 class="text-lg font-semibold">Sayt nomi va icon</h2>
+              <div class="my-5" data-controller="previews">
+                  <%= form.label :icon do %>
+                    <p>sayt icon fayli *</p>
+                    <div class="w-56 h-56 flex items-center justify-center rounded-xl border overflow-hidden mt-5 bg-gray-200 relative">
+                      <i class='bx bx-image-add text-3xl absolute opacity-70' ></i>
+                      <% if @setting.icon.attached? %>
+                        <%= image_tag @setting.icon, data: { previews_target: "preview" }, class: "aspect-square object-cover w-full h-full scale-105 rounded-lg" %>
+                      <% else %>
+                        <%= image_tag "", data: { previews_target: "preview" }, class: "aspect-square object-cover w-full h-full scale-105 rounded-lg" %>
+                      <% end %>
+                    </div>
+                  <% end %>
+
+                  <%= form.file_field :icon, direct_upload: true, class: "hidden", data: { previews_target: "input", action: "change->previews#preview" } %>
+              </div>
+              <div>
+                  <%= form.label :site_name, "sayt nomi *" %>
+                  <%= form.text_field :site_name, value: @setting.site_name, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+              </div>
+              <h2 class="text-lg font-semibold">Manzili</h2>
+              <div>
+                  <%= form.label :site_address, "hizmat korsatish hududi *" %>
+                  <%= form.text_field :site_address, value: @setting.site_address, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+              </div>
+          </div>
+          <div class="bg-white flex-1 border rounded-xl p-5 space-y-5">
+              <h2 class="text-lg font-semibold">Sarlavxa va banner</h2>
+              <div class="my-5" data-controller="previews">
+                  <%= form.label :banner do %>
+                    <p>sayt banner fayli *</p>
+                    <div class="w-full h-56 flex items-center justify-center rounded-xl border overflow-hidden mt-5 bg-gray-200 relative">
+                      <i class='bx bx-image-add text-3xl absolute opacity-70' ></i>
+                      <% if @setting.banner.attached? %>
+                        <%= image_tag @setting.banner, data: { previews_target: "preview" }, class: "aspect-square object-cover w-full h-full scale-105 rounded-lg" %>
+                      <% else %>
+                        <%= image_tag "", data: { previews_target: "preview" }, class: "aspect-square object-cover w-full h-full scale-105 rounded-lg" %>
+                      <% end %>
+                    </div>
+                  <% end %>
+
+                  <%= form.file_field :banner, direct_upload: true, class: "hidden", data: { previews_target: "input", action: "change->previews#preview" } %>
+              </div>
+              <div>
+                  <%= form.label :site_welcome, "Banner sarlavhasi *" %>
+                  <%= form.text_field :site_welcome, value: @setting.site_welcome, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+              </div>
+              <div>
+                  <%= form.label :site_description, "Banner sarlavhasi osti hushyori *" %>
+                  <%= form.text_field :site_description, value: @setting.site_description, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+              </div>
+              <h2 class="text-lg font-semibold">Ish va buyurtma vaqtlari</h2>
+              <div>
+                  <%= form.label :order_time, "Banner sarlavhasi osti hushyori *" %>
+                  <%= form.text_field :order_time, value: @setting.order_time, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+              </div>
+              <div>
+                  <%= form.label :work_start_time, "Banner sarlavhasi osti hushyori *" %>
+                  <%= form.time_field :work_start_time, value: @setting.work_start_time, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+              </div>
+              <div>
+                  <%= form.label :work_end_time, "Banner sarlavhasi osti hushyori *" %>
+                  <%= form.time_field :work_end_time, value: @setting.work_end_time, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+              </div>
+          </div>
+          <div class="bg-white flex-1 border rounded-xl p-5 space-y-5">
+              <h2 class="text-lg font-semibold">Linklar va yordam</h2>
+              <div>
+                  <%= form.label :instagram_link, "Banner sarlavhasi osti hushyori *" %>
+                  <%= form.text_field :instagram_link, value: @setting.instagram_link, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+              </div>
+              <h2 class="text-lg font-semibold">Yetkazib berish narxi</h2>
+              <div>
+                  <%= form.label :order_price, "valuta nomi * sum" %>
+                  <%= form.number_field :order_price, value: @setting.order_price, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+              </div>
+          </div>
+      </div>
+  </div>
+<% end %>

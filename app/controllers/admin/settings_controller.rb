@@ -1,9 +1,19 @@
 class Admin::SettingsController < AdminController
+  before_action :set_setting, only: %i[ update ]
   def index
     @setting = Setting.first
   end
 
   def update
+    respond_to do |format|
+      if @setting.update(setting_params)
+        format.html { redirect_to admin_settings_path, notice: "ozgarishlar saqlandi." }
+        format.json { render :show, status: :ok, location: @admin_product }
+      else
+        format.html { render :index, status: :unprocessable_entity }
+        format.json { render json: @setting.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private
