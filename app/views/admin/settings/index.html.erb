@@ -1,5 +1,18 @@
-<div class="w-full">
-    <div class="w-full p-4">
-
+<div class="w-full space-y-5">
+    <div class="w-full p-4 bg-white border rounded-xl">
+        <h1 class="text-2xl font-bold">Settings</h1>
     </div>
+    <%= form_with url: admin_setting_path(@setting), method: :patch do %>
+        <div class="w-full flex gap-5 justify-between items-start">
+            <div class="bg-white flex-1 border rounded-xl p-5">
+                <h2 class="text-lg font-semibold">Sayt nomi va icon</h2>
+            </div>
+            <div class="bg-white flex-1 border rounded-xl p-5">
+                <h2 class="text-lg font-semibold">Ish vaqtlari va banner</h2>
+            </div>
+            <div class="bg-white flex-1 border rounded-xl p-5">
+                <h2 class="text-lg font-semibold">Linklar va yordam</h2>
+            </div>
+        </div>
+    <% end %>
 </div>

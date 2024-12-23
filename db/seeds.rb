@@ -10,3 +10,4 @@
 # db/seeds.rb
 
 User.create(name: "Manager", email: "admin@we.com", password: "admin1234", status: "admin", mobile: "333038282", born_in: 2000)
+Setting.create(site_name: "PizzApp", site_welcome: "Welcome to PizzApp", site_description: "every thing has high quality and cheap!", order_time: "00:15:05", work_start_time: Time.new(2000, 1, 1, 9, 0), work_end_time: Time.new(2000, 1, 1, 23, 0), site_address: "baliqchi", instagram_link: "instagram", order_price: 10000)

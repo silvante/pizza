@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  site_name: MyString
+  site_description: MyText
+  site_welcome: MyString
+  order_time: MyString
+  work_start_time: 2024-12-22 21:53:44
+  work_end_time: 2024-12-22 21:53:44
+  site_address: MyString
+  instagram_link: MyString
+  order_price: 1
+
+two:
+  site_name: MyString
+  site_description: MyText
+  site_welcome: MyString
+  order_time: MyString
+  work_start_time: 2024-12-22 21:53:44
+  work_end_time: 2024-12-22 21:53:44
+  site_address: MyString
+  instagram_link: MyString
+  order_price: 1
