@@ -6,7 +6,7 @@ class AdminController < ApplicationController
     @number_of_clients = User.where(status: "client").length
     @number_of_products = Product.all.length
     @number_of_types = Category.all.length
-    total_ordered = Order.where(status: "ordered")
+    @total_ordered = Order.where(status: "ordered")
 
     def format_revenue(number)
       number.to_s.reverse.scan(/\d{1,3}/).join(",").reverse
@@ -22,7 +22,7 @@ class AdminController < ApplicationController
       total_delivered: Order.where(status: "delivered").length,
       total_checked: Order.where(status: "checked").length,
       total_failed: Order.where(status: "failed").length,
-      total_revenue: total_ordered.sum { |order| }
+      total_revenue: @total_ordered.sum { |order| }
     }
   end
 
