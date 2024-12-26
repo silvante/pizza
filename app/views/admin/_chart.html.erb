@@ -1,4 +1,4 @@
 <div class="p-5 rounded-xl border bg-white space-y-5">
     <h3 class="text-2xl font-semibold">Oylik sotilgan maxsulotlar soni</h3>
-    <%= line_chart Order.group_by_day(:updated_at, range: 1.month.ago.midnight..Time.now).sum(:total),  colors: ["#FF7010"] %>
+    <%= line_chart Order.where(status: "delivered").group_by_day(:updated_at, range: 1.month.ago.midnight..Time.now).sum(:total),  colors: ["#FF7010"] %>
 </div>

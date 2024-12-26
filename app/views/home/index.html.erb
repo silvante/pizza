@@ -10,7 +10,7 @@
                 <div class="bg-white border rounded-xl overflow-hidden">
                     <%= link_to product_path(pr) do %>
                         <div class="w-full">
-                            <%= image_tag pr.thumbnail380, class: "w-full aspect-square" %>
+                            <%= image_tag pr.thumbnail380, class: "w-full aspect-square object-cover" %>
                         </div>
                     <% end %>
                     <div class="p-4 w-full space-y-1">
