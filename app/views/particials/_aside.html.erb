@@ -1,6 +1,6 @@
 <aside class="p-5 border-r bg-white w-72 h-screen space-y-4 sticky top-0 left-0">
     <%= link_to admin_path, class: "flex items-center gap-2 text-xl" do %>
-        <%= image_tag settings.icon, class: "w-14 h-14" %> <%= settings.site_name %> admin
+        <%= image_tag settings.icon.attached? ? settings.icon : "logo.png", class: "w-14 h-14" %> <%= settings.site_name %> admin
     <% end %>
     <nav class="w-full">
         <ul>

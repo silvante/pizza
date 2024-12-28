@@ -32,7 +32,7 @@
     <div class="container mx-auto px-5 flex bg-white py-4 justify-between items-center">
         <div class="flex items-center gap-10">
             <%= link_to root_path, class: "flex items-center gap-2 text-xl" do %>
-                <%= image_tag settings.icon, class: "w-14 h-14" %> <%= settings.site_name %>
+                <%= image_tag settings.icon.attached? ? settings.icon : "logo.png", class: "w-14 h-14" %> <%= settings.site_name %>
             <% end %>
             <% if categories.present? %>
                 <% categories.first(5).each do |category| %>

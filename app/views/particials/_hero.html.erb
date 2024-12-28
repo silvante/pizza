@@ -1,5 +1,5 @@
-<div class="w-full h-96 overflow-hidden rounded-3xl relative">
-    <%= image_tag settings.banner, class: "w-full object-cover brightness-50" %>
+<div class="w-full h-96 overflow-hidden rounded-3xl relative flex justify-center items-center">
+    <%= image_tag settings.banner.attached? ? settings.banner : "wp.jpg", class: "w-full object-cover brightness-50" %>
     <div class="absolute w-full h-full top-0 left-0 flex flex-col items-center justify-center text-white space-y-2">
         <h1 class="roman text-5xl font-bold"><%= settings.site_welcome %></h1>
         <p><%= settings.site_description %></p>
