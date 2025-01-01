@@ -14,5 +14,5 @@ class User < ApplicationRecord
     self.status ||= "active" # Assign default only if the field is nil
   end
 
-  has_many :order
+  has_many :order, dependent: :destroy
 end

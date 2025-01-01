@@ -6,7 +6,7 @@ class Category < ApplicationRecord
     image.variant(resize_to_limit: [ 50, 50 ])
   end
 
-  has_many :product
+  has_many :product, dependent: :destroy
 
   validate :image_validations
 

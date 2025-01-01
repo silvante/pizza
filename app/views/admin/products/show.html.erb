@@ -20,6 +20,13 @@
     </div>
 
     <div class="w-full bg-white p-4 rounded-xl border space-y-4">
+      <p class="mb-2 text-xl font-semibold">Mahsulot 1 oylik malumotlari</p>
+      <%= line_chart @admin_product.order_products.joins(:order).where(order: {status: "delivered"}).group_by_day(:created_at, range: 1.month.ago.midnight..Time.now).sum(:amount), colors: ["#FF7010"] %>
+    </div>
+
+    <p class="py-4 text-xl font-semibold px-4">Detallar</p>
+
+    <div class="w-full bg-white p-4 rounded-xl border space-y-4">
       <div>
         <h3 class="text-lg font-semibold">Mahsulot haqida:</h3>
         <p><%= @admin_product.desc %></p>
@@ -38,6 +45,11 @@
       </div>
     </div>
 
-    <%= link_to "Mahsulotni ozgartirish", edit_admin_product_path(@admin_product), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="flex gap-5">
+      <%= link_to "Mahsulotni ozgartirish", edit_admin_product_path(@admin_product), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= button_to [:admin, @admin_product], method: :delete do %>
+        <p class="text-md font-medium mt-2 rounded-lg py-3 px-5 bg-white border text-red-500 hover:text-white hover:bg-red-500 hover:border-red-500"><i class='bx bx-trash'></i> turni ochirib yuborish</p>
+      <% end %>
+    </div>
   </div>
 </div>

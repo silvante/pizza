@@ -10,7 +10,7 @@ class Product < ApplicationRecord
     image.variant(resize_to_limit: [ 380, 380 ])
   end
 
-  has_many :order_products
+  has_many :order_products, dependent: :destroy
 
   validate :image_validations
 
