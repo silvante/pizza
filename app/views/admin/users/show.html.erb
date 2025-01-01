@@ -61,7 +61,7 @@
     <% end %>
     <p class="text-xl font-semibold px-4 text-red-500">Xavfli zona</p>
     <div>
-        <%= link_to admin_user_path(@user.id), data: {"turbo-method": :delete, "turbo-confirm": "roihatdan chiqarishga ishonchingiz komilmi?"} do %>
+        <%= link_to admin_user_path(@user.id), data: {"turbo-method": :delete, "turbo-confirm": "roihatdan chiqarishga ishonchingiz komilmi? Mijozni yoqotilishi u qilgan barcha buyurmalarni yoqotilisha olib keladi, va bu yillik va oylik hisoblashlarni kamayishiga olib keladi"} do %>
           <p class="py-2 px-4 bg-gray-200 text-center text-black rounded-lg hover:text-white hover:bg-red-500">Roihatdan ochirib tashlash</p>
         <% end %>
     </div>
