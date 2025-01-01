@@ -1,12 +1,43 @@
 <div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
+  <div class="w-full">
     <% if notice.present? %>
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
 
-    <%= render @admin_product %>
+    <div class="w-full bg-white p-4 rounded-xl border flex justify-between items-center">
+      <h2 class="text-2xl font-semibold truncate"><%= @admin_product.title %></h2>
+      <%= link_to 'Mahsulotlarga qaytish', admin_products_path, class: 'bg-black/10 py-2 px-4 rounded-lg' %>
+    </div>
 
-    <%= link_to "Edit this product", edit_admin_product_path(@admin_product), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Back to products", admin_products_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="w-full flex justify-center items-center py-10">
+      <div class="w-96 h-96 bg-gray-500 overflow-hidden rounded-full">
+        
+        <% if @admin_product.image.attached? %>
+          <%= image_tag @admin_product.image, alt: '@admin_product.image', class: "aspect-square w-full h-full object-cover" %>
+        <% end %>
+        
+      </div>
+    </div>
+
+    <div class="w-full bg-white p-4 rounded-xl border space-y-4">
+      <div>
+        <h3 class="text-lg font-semibold">Mahsulot haqida:</h3>
+        <p><%= @admin_product.desc %></p>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold">Mahsulot statusi:</h3>
+        <% if @admin_product.is_active %>
+          <p class="bg-green-500 font-semibold px-3 inline-block">Aktiv</p>
+        <% else %>
+          <p class="bg-red-500 font-semibold px-3 inline-block">Passiv</p>
+        <% end %>
+      </div>
+       <div>
+        <h3 class="text-lg font-semibold">Mahsulot Sotilgan soni:</h3>
+        <p><strong class="bg-black/10"><%= @admin_product.order_products.joins(:order).where(order: {status: "delivered"}).sum(:amount) %></strong> ta jami</p>
+      </div>
+    </div>
+
+    <%= link_to "Mahsulotni ozgartirish", edit_admin_product_path(@admin_product), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
 </div>
