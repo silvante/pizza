@@ -47,8 +47,10 @@
 
     <div class="flex gap-5">
       <%= link_to "Mahsulotni ozgartirish", edit_admin_product_path(@admin_product), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      <%= button_to [:admin, @admin_product], method: :delete do %>
-        <p class="text-md font-medium mt-2 rounded-lg py-3 px-5 bg-white border text-red-500 hover:text-white hover:bg-red-500 hover:border-red-500"><i class='bx bx-trash'></i> turni ochirib yuborish</p>
+      <%= link_to [:admin, @admin_product], data: { "turbo-method":"delete", "turbo-confirm":"Diqqat: Mahsulotlardan birini yo'qotilishi Oylik va yilik Hisoblashlarga qattiq tasir qilishi mumkin, Mahsulot saytda Umuman bolmagan hisoblanadi, agar mahsulot Kop sotilmasa yoki Umuman sotilmagan bolsa tasdiqlang" } do %>
+        <p class="text-md font-medium mt-2 rounded-lg py-3 px-5 bg-white border text-red-500 hover:text-white hover:bg-red-500 hover:border-red-500">
+          <i class='bx bx-trash'></i> Mahsulotni ochirib yuborish
+        </p>
       <% end %>
     </div>
   </div>

@@ -9,8 +9,10 @@
   <%= render "form", admin_category: @admin_category %>
   <p class="px-5">havfli hudud #</p>
   <div class="inline-block ml-2">
-      <%= button_to [:admin, @admin_category], method: :delete do %>
-        <p class="text-md font-medium mt-2 rounded-lg py-3 px-5 bg-white border text-red-500 hover:text-white hover:bg-red-500 hover:border-red-500"><i class='bx bx-trash'></i> turni ochirib yuborish</p>
-      <% end %>
+     <%= link_to [:admin, @admin_category], data: { "turbo-method":"delete", "turbo-confirm":"Diqqat: Turni o'chirish Turga bog'liq bo'lgan mahsulotlarni o'chishiga olib keladi, va mahsulotlarni yo'qotilishi Undan ko'p muammolarga olib kelishi mumkin!  ishonchingiz komil bo'lsa yoki Tur ga oid Mahsulotlar bo'lmasa tasdiqlang" } do %>
+       <p class="text-md font-medium mt-2 rounded-lg py-3 px-5 bg-white border text-red-500 hover:text-white hover:bg-red-500 hover:border-red-500">
+         <i class='bx bx-trash'></i> Turni ochirib yuborish
+       </p>
+     <% end %>
   </div>
 </div>
