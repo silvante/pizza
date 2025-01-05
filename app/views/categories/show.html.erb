@@ -16,7 +16,7 @@
                 <% end %>
             </div>
         <% else %>
-            <div class="w-full grid grid-cols-3 gap-8">
+            <div class="w-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
                 <% @category.product.each do |pr| %>
                     <div class="bg-white border rounded-xl overflow-hidden">
                         <%= link_to product_path(pr) do %>
