@@ -1,7 +1,7 @@
 <div class="w-full h-96 overflow-hidden rounded-3xl relative flex justify-center items-center">
-    <%= image_tag settings.banner.attached? ? settings.banner : "wp.jpg", class: "w-full object-cover brightness-50" %>
-    <div class="absolute w-full h-full top-0 left-0 flex flex-col items-center justify-center text-white space-y-2">
-        <h1 class="roman text-5xl font-bold"><%= settings.site_welcome %></h1>
+    <%= image_tag settings.banner.attached? ? settings.banner : "wp.jpg", class: "w-full h-full object-cover brightness-50" %>
+    <div class="absolute w-full h-full top-0 left-0 flex flex-col items-center justify-center text-white space-y-2 p-10">
+        <h1 class="roman text-4xl lg:text-5xl text-center font-bold"><%= settings.site_welcome %></h1>
         <p><%= settings.site_description %></p>
         <%= link_to cart_index_path do %>
             <p class="bg-base text-white py-2 px-5 rounded-lg my-4"><i class="bx bx-cart"></i> Savatchani korish</p>
