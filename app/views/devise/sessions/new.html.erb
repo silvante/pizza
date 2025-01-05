@@ -1,6 +1,6 @@
 <div class="w-full flex flex-col h-screen justify-center items-center">
   <%= link_to root_path, class: "text-xl flex gap-2 items-center my-5" do %>
-    <%= image_tag settings.site_icon.attached? ? settings.site_icon : "pizza.png" %> <%= settings.site_name? ? settings.site_name : "PizzApp" %>
+    <%= image_tag settings.icon.attached? ? settings.icon : "pizza.png", class: "w-16" %> <%= settings.site_name? ? settings.site_name : "PizzApp" %>
   <% end %>
   
   <h2 class="text-2xl font-semibold">Log in</h2>

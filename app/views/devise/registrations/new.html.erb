@@ -1,6 +1,6 @@
 <div class="w-full flex flex-col h-screen justify-center items-center">
   <%= link_to root_path, class: "text-xl flex gap-2 items-center my-5" do %>
-    <%= image_tag settings.site_icon.attached? ? settings.site_icon : "pizza.png" %> <%= settings.site_name? ? settings.site_name : "PizzApp" %>
+    <%= image_tag settings.icon.attached? ? settings.icon : "pizza.png", class: "w-16" %> <%= settings.site_name? ? settings.site_name : "PizzApp" %>
   <% end %>
 
   <h2 class="text-2xl font-semibold">Roihatdan oting</h2>
@@ -8,7 +8,7 @@
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
   
-    <div class="w-[560px] flex gap-5 px-5 my-3">
+    <div class="flex flex-col sm:flex-row gap-5 px-5 my-3">
       <div class="field flex-1 space-y-1">
         <%= f.label :email, "emailingiz" %><br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "rounded-lg" %>
@@ -19,7 +19,7 @@
       </div>
     </div>
 
-    <div class="w-[560px] flex gap-5 px-5 my-3">
+    <div class="flex flex-col sm:flex-row gap-5 px-5 my-3">
       <div class="field flex-1 space-y-1">
         <%= f.label :mobile, "telefon raqamingiz" %><br />
         <%= f.text_field :mobile, autofocus: true, autocomplete: "email", class: "rounded-lg" %>
@@ -30,7 +30,7 @@
       </div>
     </div>
   
-    <div class="w-[560px] flex gap-5 px-5 my-3">
+    <div class="flex flex-col sm:flex-row gap-5 px-5 my-3">
       <div class="field flex-1 space-y-1">
         <%= f.label :password, "parol" %>
         <% if @minimum_password_length %>
@@ -45,7 +45,7 @@
       </div>
     </div>
   
-    <div class="actions w-[560px] flex gap-5 px-5 my-3 justify-center ">
+    <div class="actions flex gap-5 px-5 my-3 justify-center ">
       <%= f.submit "Roihatdan otish", class: "text-white py-2 px-5 my-3 bg-base rounded-lg cursor-pointer" %>
     </div>
   <% end %>
