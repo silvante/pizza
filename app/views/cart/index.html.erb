@@ -1,7 +1,7 @@
 <div class="lg:w-2/3 mx-auto space-y-5 py-10">
     <div class="flex w-full justify-between items-center">
         <h1 class="text-2xl font-semibold">Maning savatcham</h1>
-        <%= link_to root_path do %>
+        <%= link_to root_path, class: "hidden sm:block" do %>
             <p class="bg-slate-200 py-2 px-5 rounded-lg hover:text-base">Bosh sahifaga qaytish</p>
         <% end %>
     </div>
@@ -9,17 +9,17 @@
         <% if @order.present? %>
             <div class="w-full space-y-5">
                 <% @order.order_products.each do |or_pr| %>
-                    <div class="w-full bg-white border rounded-xl overflow-hidden flex justify-between items-center">
-                        <div class="flex gap-5 items-center">
+                    <div class="w-full bg-white border rounded-xl overflow-hidden flex flex-col md:flex-row justify-between items-center">
+                        <div class="flex w-full md:w-auto gap-5 items-center">
                             <div class="w-32 h-32 rounded-xl overflow-hidden">
                                 <%= image_tag or_pr.product.thumbnail380, class: "w-full h-full aspect-square object-cover" %>
                             </div>
-                            <div>
-                                <p class="w-72 truncate text-lg font-semibold"><%= or_pr.product.title %></p>
-                                <p class="w-72 truncate"><%= or_pr.product.desc %></p>
+                            <div class="flex-1">
+                                <p class="text-lg font-semibold"><%= or_pr.product.title %></p>
+                                <p class=""><%= or_pr.product.desc %></p>
                             </div>
                         </div>
-                        <div class="flex gap-5 items-center p-5">
+                        <div class="flex gap-5 items-center p-2 w-full md:w-auto justify-between">
                             <div class="bg-base/30 py-2 px-5 rounded-lg">
                                 <p class="text-lg font-bold text-base"><%= or_pr.amount %></p>
                             </div>
@@ -27,7 +27,7 @@
                         </div>
                     </div>
                 <% end %>
-                <div class="w-full bg-white border rounded-xl overflow-hidden flex justify-between items-center p-5">
+                <div class="w-full bg-white border rounded-xl overflow-hidden flex flex-col md:flex-row space-y-3 md:space-y-0 justify-between items-center p-5">
                     <p class="text-xl font-semibold">umumiy narx:</p>
                     <div class="flex items-center gap-4">
                         <strong class="text-base text-xl"><%= @order.order_products.sum { |op| op.amount * op.product.price } %> sum</strong>
@@ -50,7 +50,7 @@
         <div class="w-full flex justify-between items-center">
             <p class="text-2xl font-semibold"><%= @order.present? ? "Qoshimcha taomlar" : "Hozir qoshing" %></p>
         </div>
-        <div class="w-full grid grid-cols-4 gap-8">
+        <div class="w-full grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-8">
             <% @products.first(4).each do |pr| %>
                 <div class="bg-white border rounded-xl overflow-hidden">
                     <%= link_to product_path(pr) do %>
