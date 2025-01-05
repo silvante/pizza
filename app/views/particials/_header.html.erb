@@ -3,10 +3,10 @@
         <div class="container mx-auto px-5 flex bg-white py-2 justify-between items-center">
             <div class="flex items-center gap-7">
                 <p class="text-lg"><i class='bx bx-location-plus text-base text-lg'></i> <%= settings.site_address %></p>
-                <p class="text-lg">zakaz kutish ortacha vaqti: <strong><%= settings.order_time %></strong></p>
+                <p class="text-lg hidden lg:block">zakaz kutish ortacha vaqti: <strong><%= settings.order_time %></strong></p>
             </div>
             <div class="flex items-center gap-7">
-                <p class="text-lg">ish vaqti: <strong><%= settings.work_start_time.strftime("%H:%M") %></strong> dan <strong><%= settings.work_end_time.strftime("%H:%M") %></strong> gacha</p>
+                <p class="text-lg hidden lg:block">ish vaqti: <strong><%= settings.work_start_time.strftime("%H:%M") %></strong> dan <strong><%= settings.work_end_time.strftime("%H:%M") %></strong> gacha</p>
                 <% if current_user.present? %>
                     <% if current_user.status == "client" %>
                         <%= link_to history_user_path(current_user) do %>
@@ -32,15 +32,17 @@
     <div class="container mx-auto px-5 flex bg-white py-4 justify-between items-center">
         <div class="flex items-center gap-10">
             <%= link_to root_path, class: "flex items-center gap-2 text-xl" do %>
-                <%= image_tag settings.icon.attached? ? settings.icon : "logo.png", class: "w-14 h-14" %> <%= settings.site_name %>
+                <%= image_tag settings.icon.attached? ? settings.icon : "pizza.png", class: "w-14 h-14" %> <%= settings.site_name %>
             <% end %>
-            <% if categories.present? %>
-                <% categories.first(5).each do |category| %>
-                    <%= link_to category_path(category) do %>
-                        <p class="text-lg"><%= category.title %></p>
+            <div class="hidden lg:flex gap-10">
+                <% if categories.present? %>
+                    <% categories.first(5).each do |category| %>
+                        <%= link_to category_path(category) do %>
+                            <p class="text-lg"><%= category.title %></p>
+                        <% end %>
                     <% end %>
                 <% end %>
-            <% end %>
+            </div>
         </div>
         <div class="flex items-center gap-7">
             <% if user_signed_in? %>
