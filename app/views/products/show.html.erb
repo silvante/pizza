@@ -1,8 +1,8 @@
 <div class="w-full bg-white p-5 rounded-lg border my-5">
-    <div class="w-full flex justify-between gap-10">
+    <div class="w-full flex flex-col lg:flex-row lg:gap-10 justify-between">
         <div class="flex-1">
             <div class="w-full h-96 overflow-hidden flex items-center justify-center rounded-xl">
-                <%= image_tag @product.image, class: "w-full" %>
+                <%= image_tag @product.image, class: "w-full h-full object-cover" %>
             </div>
         </div>
         <div class="flex-1 py-10">
@@ -31,7 +31,7 @@
                     <%= f.hidden_field :amount, value: 1, data: { count_target: "input" } %>
                     <%= f.hidden_field :product_id, value: @product.id %>
 
-                    <div class="flex gap-7 items-center my-5 w-full justify-between">
+                    <div class="flex flex-col lg:flex-row gap-7 lg:items-center my-5 w-full justify-between">
                         <h3 class="text-xl font-semibold"><span class="opacity-50">Narx: </span><%= @product.price %> sum </h3>
                         <%= button_tag(type: "submit") do %>
                             <p class="bg-base text-white py-2 px-7 font-semibold rounded-lg">Savatchaga <i class='bx bxs-shopping-bag-alt'></i></p>
