@@ -9,7 +9,7 @@
         <% if @orders.length >= 1 %>
             <% @orders.each do |order| %>
                 <div class="bg-white rounded-lg border flex flex-col w-full">
-                    <div class="flex gap-16 w-full justify-between p-5 border-b">
+                    <div class="grid grid-cols-2 gap-5 xl:gap-16 w-full justify-between p-5">
                         <div class="flex gap-3">
                             <% if order.status == "checked" %>
                                 <i class="bg-gray-500 px-1 py-3 rounded-full"></i>
@@ -50,8 +50,9 @@
                             </strong>
                         </div>
                     </div>
-                    <div class="p-5 flex justify-between items-center">
-                        sana: <%= order.updated_at %>
+                    <p class="p-5 pt-0">sana: <%= order.updated_at %></p>
+                    <div class="p-5 flex justify-between items-center border-t">
+                        <p class="hidden">sana: <%= order.updated_at %></p>
                         <div class="flex gap-1">
                             <% order.order_products.first(3).each do |op| %>
                                 <%= link_to product_path(op.product.id) do %>
@@ -65,7 +66,7 @@
         <% else %>
             <div class="w-full flex flex-col items-center justify-center my-24">
                 <%= image_tag "burger.png", class: "w-56" %>
-                <h1 class="text-2xl font-bold mb-1">Hozircha buyurtmalar mavjud emas!</h1>
+                <h1 class="text-2xl font-bold mb-1 text-center">Hozircha buyurtmalar mavjud emas!</h1>
                 <p class="text-center w-2/3"><strong>eslatma:</strong> zakaz telefon raqam orqali amalga oshiriladi, iltimos telefon raqamingiz togri formatda ekanligiga ishonch hosil qiling</p>
                 <%= link_to root_path do %>
                     <p class="bg-base text-white py-2 px-5 rounded-lg my-4">hozir taom tanlash</p>
