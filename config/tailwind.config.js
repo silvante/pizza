@@ -30,3 +30,5 @@ module.exports = {
     themes: ["light", "dark", "cupcake"], // Example themes
   },
 }
+
+// #6A42C2

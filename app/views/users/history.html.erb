@@ -9,7 +9,7 @@
         <% if @orders.length >= 1 %>
             <% @orders.each do |order| %>
                 <div class="bg-white rounded-lg border flex flex-col w-full">
-                    <div class="grid grid-cols-2 gap-5 xl:gap-16 w-full justify-between p-5">
+                    <div class="grid grid-cols-2 xl:grid-cols-4 gap-5 xl:gap-16 w-full justify-between p-5">
                         <div class="flex gap-3">
                             <% if order.status == "checked" %>
                                 <i class="bg-gray-500 px-1 py-3 rounded-full"></i>
@@ -50,9 +50,9 @@
                             </strong>
                         </div>
                     </div>
-                    <p class="p-5 pt-0">sana: <%= order.updated_at %></p>
+                    <p class="p-5 pt-0 sm:hidden">sana: <%= order.updated_at %></p>
                     <div class="p-5 flex justify-between items-center border-t">
-                        <p class="hidden">sana: <%= order.updated_at %></p>
+                        <p class="hidden sm:block ">sana: <%= order.updated_at %></p>
                         <div class="flex gap-1">
                             <% order.order_products.first(3).each do |op| %>
                                 <%= link_to product_path(op.product.id) do %>
