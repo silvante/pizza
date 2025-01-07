@@ -24,30 +24,30 @@
         <div id="<%= "order-container-delivery-#{@delivery.id}" %>">
             <% @orders.each do |order| %>
                 <div class="bg-white border rounded-xl">
-                        <div class="p-4 flex justify-between items-center border-b">
-                        <div class="flex gap-5">
-                          <% if order.status == "complate" %>
-                            <i class="bg-green-500 px-1 py-3 rounded-full"></i>
-                          <% else %>
-                            <i class="bg-red-500 px-1 py-3 rounded-full"></i>
-                          <% end %>
-                          <div>
-                            <p class=" opacity-70 font-medium">nomer:</p>
-                            <p class="font-semibold w-52 truncate">#<%= order.order_code %></p>
+                        <div class="p-4 grid grid-cols-2 gap-5 justify-between items-center border-b">
+                          <div class="flex gap-5">
+                            <% if order.status == "complate" %>
+                              <i class="bg-green-500 px-1 py-3 rounded-full"></i>
+                            <% else %>
+                              <i class="bg-red-500 px-1 py-3 rounded-full"></i>
+                            <% end %>
+                            <div>
+                              <p class="opacity-70 font-medium">nomer:</p>
+                              <p class="font-semibold w-52 truncate">#<%= order.order_code %></p>
+                            </div>
                           </div>
-                        </div>
-                        <div>
-                          <p class=" opacity-70 font-medium">telefon raqam:</p>
-                          <p class="font-semibold w-52 truncate">+998 <%= order.user.mobile %></p>
-                        </div>
-                        <div>
-                          <p class=" opacity-70 font-medium">umumiy narxi:</p>
-                          <p class="font-semibold w-52 truncate"><%= order.order_products.sum { |op| op.product.price * op.amount} %> sum</p>
-                        </div>
-                        <div>
-                          <p class=" opacity-70 font-medium">mahulotlar soni:</p>
-                          <p class="font-semibold"><%= order.order_products.sum { |op| op.amount } %> ta</p>
-                        </div>
+                          <div>
+                            <p class="opacity-70 font-medium">telefon raqam:</p>
+                            <p class="font-semibold w-52 truncate">+998 <%= order.user.mobile %></p>
+                          </div>
+                          <div>
+                            <p class="opacity-70 font-medium">umumiy narxi:</p>
+                            <p class="font-semibold w-52 truncate"><%= order.order_products.sum { |op| op.product.price * op.amount} %> sum</p>
+                          </div>
+                          <div>
+                            <p class="opacity-70 font-medium">mahulotlar soni:</p>
+                            <p class="font-semibold"><%= order.order_products.sum { |op| op.amount } %> ta</p>
+                          </div>
                         </div>
                         <div class="flex flex-col border-b p-4">
                         <strong class="text-lg">manzil:</strong>
