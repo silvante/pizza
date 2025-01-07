@@ -1,11 +1,11 @@
 <div class="lg:w-2/3 mx-auto space-y-5 flex flex-col min-h-screen">
-    <div class="w-full flex justify-between items-center py-3">
+    <div class="w-full flex flex-col gap-3 justify-between lg:flex-row items-center py-3">
         <h1 class="text-xl font-bold">Yatkazib berish - <%= @delivery.name %></h1>
         <%= link_to user_path(@delivery.id) do %>
             <p class="py-2 px-5 bg-base text-white rounded-lg">Mening hisobim</p>
         <% end %>
     </div>
-    <div class="w-full grid grid-cols-3 gap-5">
+    <div class="w-full grid grid-cols-1 xl:grid-cols-3 gap-5">
         <div class="p-7 rounded-lg bg-gradient-to-r from-base to-yellow-500 text-white text-center">
             <h2 class="font-semibold text-xl text-center">Yetkazish uchun</h2>
             <strong class="text-3xl"><%= @orders.length %> ta</strong>
@@ -87,21 +87,21 @@
             <% end %>
         </div>
         <% if @orders.length <= 0 %>
-          <%= render partial: "particials/pizzalert", locals: {message: "Hozircha Buyurtmalar yoq", alert: "punktga boring yoki sizga buyurtma yoki qongiroq kelishini kuting", local_path: delivery_path(@delivery), btn_text: "sahifada qoling!"} %>
+          <%= render partial: "particials/pizzalert", locals: {message: "Hozircha Buyurtmalar yoq!", alert: "punktga boring yoki sizga buyurtma yoki qongiroq kelishini kuting", local_path: delivery_path(@delivery), btn_text: "sahifada qoling!"} %>
         <% end %>
     </div>
-    <div class="w-full grid grid-cols-2 gap-5">
-        <div class="p-5 rounded-lg bg-gradient-to-r from-red-600 to-red-500 text-white flex justify-center items-center gap-5">
+    <div class="w-full grid grid-cols-1 xl:grid-cols-2 gap-5">
+        <div class="p-5 rounded-lg bg-gradient-to-r from-red-600 to-red-500 text-white flex flex-col justify-center items-center gap-1">
             <h2 class="font-semibold text-xl text-center">Bugun Yetkazib berilmadi</h2>
             <strong class="text-3xl"><%= @failed_today.length %> ta</strong>
         </div>
-        <div class="p-5 rounded-lg bg-gradient-to-r from-red-600 to-red-500 text-white flex justify-center items-center gap-5">
+        <div class="p-5 rounded-lg bg-gradient-to-r from-red-600 to-red-500 text-white flex flex-col justify-center items-center gap-1">
             <h2 class="font-semibold text-xl text-center">Jami yetkazib berilmagan</h2>
             <strong class="text-3xl"><%= @total_failed.length %> ta</strong>
         </div>
     </div>
     <p class="w-full text-center font-semibold text-xl">yordam kerakmi?</p>
-    <div class="flex justify-between items-center pb-5">
+    <div class="flex flex-col lg:flex-row justify-between items-center pb-5">
         <h2><strong>Admin raqami:</strong> +998 <%= settings.dispatcher_mobile %></h2>
         <h2><strong>Yaratuvchi raqami:</strong> +998 333038282</h2>
     </div>
