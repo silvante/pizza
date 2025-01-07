@@ -1,5 +1,5 @@
 <div class="bg-white border rounded-xl">
-    <div class="p-4 flex justify-between items-center border-b">
+    <div class="p-4 grid grid-cols-2 xl:grid-cols-4 gap-5 justify-between items-center border-b">
     <div class="flex gap-5">
       <% if order.status == "complate" %>
         <i class="bg-green-500 px-1 py-3 rounded-full"></i>
@@ -44,13 +44,13 @@
             <p class="font-semibold w-52 truncate"><%= op.product.title %></p>
           </div>
           <div>
-            <p class=" opacity-70 font-medium">mahsulot soni:</p>
+            <p class=" opacity-70 font-medium flex gap-1"><span class="hidden md:block">mahsulot</span> soni:</p>
             <p class="font-semibold"><%= op.amount %> ta</p>
           </div>
         </div>
     <% end %>
     </div>
-    <div class="p-4 flex justify-between gap-4">
+    <div class="p-4 flex flex-col md:flex-row justify-between gap-4">
       <%= link_to success_delivery_path(order), data: {"turbo-method": :patch}, class: "flex-1" do %>
         <p class="w-full text-white bg-green-500 rounded-lg py-2 text-center">Yetkazib berildi</p>
       <% end %>
