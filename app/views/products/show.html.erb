@@ -39,6 +39,40 @@
                     </div>
                 <% end %>
             </div>
+            
         </div>
     </div>
+</div>
+<div class="w-full flex justify-between items-center mb-5">
+    <h2 class="text-2xl font-semibold">Shu turdagi mahsulotlar</h2>
+</div>
+<div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5 mb-5">
+    <% if @related_products.length >= 1 %>
+        <% @related_products.each do |pr| %>
+            <div class="bg-white border rounded-xl overflow-hidden">
+                <%= link_to product_path(pr) do %>
+                    <div class="w-full">
+                        <%= image_tag pr.thumbnail380, class: "w-full aspect-square object-cover" %>
+                    </div>
+                <% end %>
+                <div class="p-4 w-full space-y-1">
+                    <p class="font-bold text-xl w-full truncate"><%= pr.title %></p>
+                    <p class="w-full truncate"><%= pr.desc %></p>
+                    <p class="">status: <strong class="<%= pr.is_active ? "bg-green-500 text-white px-2" : "bg-red-500 text-white px-2"%>"><%= pr.is_active ? "aktiv" : "passiv" %></strong></p>
+                </div>
+                <div class="p-4 pt-0 w-full flex justify-between items-center">
+                    <%= form_with url: add_to_cart_cart_index_path, method: :post, local: true do |form| %>
+                      <%= hidden_field_tag :product_id, pr.id %>
+                      <%= hidden_field_tag :amount, 1, min: 1 %>
+                      <% if checking_ids.present? and checking_ids.include?(pr.id) %>
+                        <%= form.submit "+ 1", class: 'text-base bg-transparent border-2 border-base rounded-md py-2 px-4 cursor-pointer' %>
+                      <% else %>
+                        <%= form.submit "savatchaga", class: 'text-white bg-base rounded-md py-2 px-4 cursor-pointer ' %>
+                      <% end %>
+                    <% end %>
+                    <p class="flex-1 truncate text-right text-xl text-t_base font-semibold"><%= pr.price %>sum</p>
+                </div>
+            </div>
+        <% end %>
+    <% end %>
 </div>
