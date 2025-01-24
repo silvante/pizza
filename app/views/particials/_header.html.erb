@@ -9,9 +9,7 @@
                 <p class="text-lg hidden lg:block">ish vaqti: <strong><%= settings.work_start_time.strftime("%H:%M") %></strong> dan <strong><%= settings.work_end_time.strftime("%H:%M") %></strong> gacha</p>
                 <% if current_user.present? %>
                     <% if current_user.status == "client" %>
-                        <%= link_to history_user_path(current_user) do %>
-                            <p class="text-lg rounded-md py-1 px-3 hover:bg-base hover:text-white"><i class='bx bx-user-circle text-lg'></i> <%= current_user.name %></p>
-                        <% end %>
+                            <p id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-end" class="text-lg rounded-md py-1 px-3 hover:bg-base hover:text-white cursor-pointer"><i class='bx bx-user-circle text-lg'></i> <%= current_user.name %></p>
                     <% elsif current_user.status == "admin" %>
                         <%= link_to new_admin_product_path do %>
                             <p class="text-lg rounded-md py-1 px-3 hover:bg-base hover:text-white"><i class='bx bx-layer-plus text-lg'></i> yangi mahsulot qoshish</p>
@@ -27,6 +25,27 @@
                     <% end %>
                 <% end %>
             </div>
+
+            <!-- Dropdown menu -->
+            <div id="userDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-72 dark:bg-gray-700 dark:divide-gray-600 border border-gray-300">
+                <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                  <div><%= current_user.name %></div>
+                  <div class="font-medium truncate"><%= current_user.email %></div>
+                </div>
+                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
+                  <li>
+                    <%= link_to history_user_path(current_user) do %>
+                        <p class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Buyurtmalar tarixi</p>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to user_path(current_user) do %>
+                        <p class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mening Hisobim</p>
+                    <% end %>
+                  </li>
+                </ul>
+            </div>
+
         </div>
     </div>
     <div class="container mx-auto px-5 flex bg-white py-4 justify-between items-center">

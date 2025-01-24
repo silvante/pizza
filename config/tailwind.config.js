@@ -6,6 +6,7 @@ module.exports = {
     './app/helpers/**/*.rb',
     './app/javascript/**/*.js',
     './app/views/**/*',
+    './node_modules/flowbite/**/*.js'
   ],
   theme: {
     extend: {
@@ -25,10 +26,8 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/container-queries'),
-  ],
-  daisyui: {
-    themes: ["light", "dark", "cupcake"], // Example themes
-  },
+    require('flowbite/plugin')
+  ]
 }
 
 // #6A42C2
