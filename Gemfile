@@ -63,7 +63,7 @@ end
 
 # custom gems
 
-gem "tailwindcss-rails", "~> 3.0"
+gem "tailwindcss-rails", "~> 4.1"
 gem "image_processing", "~> 1.2"
 gem "devise", "~> 4.9", ">= 4.9.4"
 gem "importmap-rails"
