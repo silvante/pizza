@@ -1,8 +1,8 @@
 source "https://rubygems.org"
 
-ruby '3.4.1'
+ruby '3.4.3'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 8.0.1"
+gem "rails", "~> 8.0.2"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 # Use the Puma web server [https://github.com/puma/puma]
@@ -68,6 +68,7 @@ gem "image_processing", "~> 1.2"
 gem "devise", "~> 4.9", ">= 4.9.4"
 gem "importmap-rails"
 gem "mysql2"
+gem 'pg'
 gem "mini_magick"
 gem "chartkick"
 gem "groupdate"
